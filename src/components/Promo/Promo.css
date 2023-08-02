@@ -1,0 +1,65 @@
+.promo {
+    padding: 82px 69px 0 71px;
+    background-color: #073042;
+    max-width: 1280px;
+}
+
+.promo__content {
+    display: flex;
+    justify-content: space-between;
+    min-height: 442px;
+}
+
+.promo__decorate {
+    border-top: 7px solid #000;
+    background-color: #073042;
+    max-width: 1280px;
+    height: 50px;
+}
+
+.promo__description {
+    max-width: 640px;
+    min-height: 174px;
+}
+.promo__title {
+    margin: 0 0 36px 0;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.16;
+    color: #fff;
+}
+
+.promo__subtitle {
+    max-width: 310px;
+    margin: 0 0 146px 0;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: auto;
+    color: #fff;
+    opacity: 0.5;
+}
+
+.promo__button {
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: auto;
+    margin: 0;
+    padding: 0;
+    width: 129px;
+    height: 36px;
+    color: #fff;
+    background-color: inherit;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}
+
+.promo__logo {
+    width: 310px;
+    height: 100%;
+}

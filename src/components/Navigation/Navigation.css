@@ -1,3 +1,30 @@
 .navigation {
     display: flex;
+    align-items: center;
+}
+
+.navigation__signup {
+    margin: 0 30px 0 0;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.navigation__signip {
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #000;
+    height: 32px;
+    width: 76px;
+    background-color: #3ddc84;
+    border: none;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
 }
