@@ -22,7 +22,7 @@ export default function Promo() {
                 '
                 />
             </div>
-            <div className='promo__decorate'></div>
+            {/* <div className='promo__decorate'></div> */}
         </section>
     );
 }
