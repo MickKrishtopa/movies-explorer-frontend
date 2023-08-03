@@ -1,5 +1,5 @@
 .promo {
-    padding: 82px 69px 0 71px;
+    padding: 75px 70px 0;
     background-color: #073042;
     max-width: 1280px;
 }
@@ -7,22 +7,15 @@
 .promo__content {
     display: flex;
     justify-content: space-between;
-    min-height: 492px;
-}
-
-.promo__decorate {
-    border-top: 7px solid #000;
-    background-color: #073042;
-    max-width: 1280px;
-    height: 50px;
+    min-height: 499px;
 }
 
 .promo__description {
     max-width: 640px;
-    min-height: 174px;
+    min-height: 450px;
 }
 .promo__title {
-    margin: 0 0 36px 0;
+    margin: 0 0 36px;
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -38,7 +31,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
-    line-height: auto;
+    line-height: 1.23;
     color: #fff;
     opacity: 0.5;
 }
@@ -47,15 +40,15 @@
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 13px;
-    line-height: auto;
+    font-size: 12px;
+    line-height: 1.33;
     margin: 0;
     padding: 0;
     width: 129px;
     height: 36px;
     color: #fff;
     background-color: inherit;
-    border: 1px solid #fff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 3px;
 }
 

@@ -2,7 +2,7 @@
     background-color: #272727;
     color: #fff;
     min-height: 425px;
-    padding: 100px 70px;
+    padding: 101px 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,9 +16,10 @@
     font-weight: 400;
     font-size: 22px;
     line-height: 1.23;
-    letter-spacing: -0.96px;
-    border-bottom: solid 1px #8b8b8b;
+    letter-spacing: -0.8px;
+    border-bottom: solid 1px #dadada;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .techs__subtitle {
@@ -27,10 +28,10 @@
     min-height: 58px;
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 4000;
     font-size: 50px;
     line-height: 1.16;
-    letter-spacing: -0.96px;
+    letter-spacing: -2px;
 }
 
 .techs__description {
@@ -40,9 +41,9 @@
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14;
+    font-size: 14px;
     line-height: 1.43;
-    letter-spacing: -0.96px;
+    letter-spacing: -0.55px;
     text-align: center;
 }
 
@@ -62,4 +63,10 @@
     margin: 0;
     border-radius: 10px;
     background-color: #303030;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: -0.55px;
 }

@@ -5,7 +5,7 @@ export default function AboutProject() {
         <section className='about-project'>
             <h2 className='about-project__title'>О проекте</h2>
             <div className='about-project__text-area'>
-                <div className='about-profect__content-left'>
+                <div className='about-profect__content-box'>
                     <p className='about-project__subtitle'>
                         Дипломный проект включал 5 этапов
                     </p>
@@ -14,7 +14,7 @@ export default function AboutProject() {
                         добавление функциональности и финальные доработки.
                     </p>
                 </div>
-                <div className='about-profect__content-right'>
+                <div className='about-profect__content-box'>
                     <p className='about-project__subtitle'>
                         На выполнение диплома ушло 5 недель
                     </p>
