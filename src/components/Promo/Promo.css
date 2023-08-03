@@ -2,9 +2,6 @@
     padding: 75px 70px 0;
     background-color: #073042;
     max-width: 1280px;
-}
-
-.promo__content {
     display: flex;
     justify-content: space-between;
     min-height: 499px;
@@ -14,6 +11,7 @@
     max-width: 640px;
     min-height: 450px;
 }
+
 .promo__title {
     margin: 0 0 36px;
     font-family: "Inter", Helvetica, sans-serif;
@@ -55,4 +53,74 @@
 .promo__logo {
     width: 310px;
     height: 100%;
+}
+
+@media screen and (max-width: 900px) {
+    .promo {
+        flex-direction: column;
+        align-items: center;
+        padding: 140px 0 0;
+    }
+
+    .promo__logo {
+        order: 1;
+        margin-bottom: 48px;
+    }
+
+    .promo__description {
+        order: 2;
+        max-width: 680px;
+        min-height: 358px;
+    }
+
+    .promo__title {
+        margin: 0 auto 22px;
+        font-size: 40px;
+        line-height: 1.25;
+        text-align: center;
+        /* letter-spacing: 0px; */
+    }
+
+    .promo__subtitle {
+        max-width: 260px;
+        margin: 0 auto 92px;
+        text-align: center;
+    }
+
+    .promo__button {
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .promo {
+        padding-top: 70px;
+    }
+
+    .promo__logo {
+        order: 1;
+        margin-bottom: 44px;
+    }
+
+    .promo__description {
+        order: 2;
+        max-width: 300px;
+        min-height: 316px;
+    }
+
+    .promo__title {
+        margin: 0 auto 24px;
+        font-size: 30px;
+        line-height: 1.27;
+        letter-spacing: -0.8px;
+    }
+
+    .promo__subtitle {
+        margin-bottom: 80px;
+    }
+
+    .promo__logo {
+        width: 210px;
+    }
 }
