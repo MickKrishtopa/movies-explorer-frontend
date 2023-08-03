@@ -1,0 +1,65 @@
+.techs {
+    background-color: #272727;
+    color: #fff;
+    min-height: 425px;
+    padding: 100px 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.techs__title {
+    margin: 0;
+    min-height: 50px;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.23;
+    letter-spacing: -0.96px;
+    border-bottom: solid 1px #8b8b8b;
+    width: 100%;
+}
+
+.techs__subtitle {
+    margin: 90px 0 0;
+    max-width: 700px;
+    min-height: 58px;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.16;
+    letter-spacing: -0.96px;
+}
+
+.techs__description {
+    margin: 26px 0 0;
+    max-width: 460px;
+    min-height: 40px;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14;
+    line-height: 1.43;
+    letter-spacing: -0.96px;
+    text-align: center;
+}
+
+.techs__decoration-area {
+    margin: 100px 0 0;
+    max-width: 690px;
+    min-height: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 90px));
+    gap: 10px;
+}
+
+.techs__decoration-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border-radius: 10px;
+    background-color: #303030;
+}
