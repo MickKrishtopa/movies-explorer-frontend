@@ -48,10 +48,11 @@
 }
 
 .about-project__decoration-area {
-    max-width: 100%;
+    /* max-width: 100%; */
     display: grid;
     min-height: 72px;
     grid-template-columns: 228px 912px;
+    grid-template-columns: minmax(min-content, 228px) minmax(min-content, 912px);
     grid-template-rows: 36px 45px;
     justify-content: center;
 }
@@ -77,4 +78,90 @@
 .about-project__decoration-text_type_gray {
     background-color: #303030;
     color: #fff;
+}
+
+@media screen and (max-width: 1080px) {
+    .about-project {
+        padding: 90px 50px 80px;
+    }
+
+    .about-profect__content-box {
+        max-width: 319px;
+    }
+
+    .about-project__description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .about-project__subtitle {
+        margin: 0 0 22px 0;
+    }
+
+    .about-project__text-area {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 93px;
+    }
+    .about-project__decoration-area {
+        grid-template-columns: minmax(min-content, 140px) minmax(
+                min-content,
+                528px
+            );
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .about-project {
+        padding: 70px 18px 60px;
+    }
+
+    .about-project__title {
+        font-size: 18px;
+        line-height: 1.22;
+    }
+
+    .about-project__text-area {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 0;
+    }
+
+    .about-profect__content-box {
+        max-width: 100%;
+        margin-bottom: 56px;
+    }
+
+    .about-profect__content-box:last-child {
+        margin-bottom: 0;
+    }
+
+    .about-project__subtitle {
+        margin: 0 0 16px 0;
+        font-size: 18px;
+        line-height: 1.22;
+    }
+
+    .about-project__description {
+        font-size: 11px;
+        line-height: 1.15;
+    }
+
+    .about-project__decoration-area {
+        /* max-width: 100%; */
+        display: grid;
+        min-height: 72px;
+        grid-template-columns: 228px 912px;
+        grid-template-columns: minmax(min-content, 100px) minmax(
+                min-content,
+                184px
+            );
+        grid-template-rows: 36px 45px;
+        justify-content: center;
+    }
+
+    .about-project__decoration-text {
+        font-size: 11px;
+        line-height: 1.19;
+    }
 }

@@ -9,10 +9,10 @@ export default function Main() {
     return (
         <>
             <Promo />
-            {/* <AboutProjest /> */}
-            {/* <Techs />
+            <AboutProjest />
+            <Techs />
             <AboutMe />
-            <Portfolio /> */}
+            <Portfolio />
         </>
     );
 }

@@ -12,15 +12,12 @@
     font-size: 18px;
     line-height: 1.11;
     color: #8b8b8b;
-    /* width: 100%; */
 }
 
 .portfolio__element {
     display: flex;
-    /* align-items: center; */
     justify-content: space-between;
     min-height: 69px;
-    /* width: 100%; */
     border-bottom: solid 1px #424242;
     margin: 0 0 20px;
     box-sizing: border-box;
@@ -48,4 +45,52 @@
     background-image: url("../../images/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
+}
+
+@media screen and (max-width: 900px) {
+    .portfolio {
+        padding: 0 50px 90px;
+    }
+
+    .portfolio__element {
+        display: flex;
+        justify-content: space-between;
+        min-height: 69px;
+        border-bottom: solid 1px #424242;
+        margin: 0 0 20px;
+        box-sizing: border-box;
+    }
+
+    .portfolio__element-text {
+        font-size: 28px;
+        line-height: 1.78;
+        letter-spacing: -1.12px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .portfolio {
+        padding: 0 14px 70px;
+    }
+
+    .portfolio__title {
+        margin: 0 0 40px;
+        font-size: 14px;
+        line-height: 1.43;
+    }
+
+    .portfolio__element {
+        min-height: 47px;
+    }
+
+    .portfolio__element-text {
+        font-size: 18px;
+        line-height: 1.55;
+        letter-spacing: -0.72px;
+    }
+
+    .portfolio__element-decoration {
+        width: 18px;
+        height: 28px;
+    }
 }
