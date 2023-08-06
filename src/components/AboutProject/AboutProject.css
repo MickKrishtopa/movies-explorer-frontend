@@ -48,7 +48,6 @@
 }
 
 .about-project__decoration-area {
-    /* max-width: 100%; */
     display: grid;
     min-height: 72px;
     grid-template-columns: 228px 912px;

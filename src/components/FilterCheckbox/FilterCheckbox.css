@@ -1,0 +1,25 @@
+.filter-checkbox {
+    margin: 27px 0 44px;
+    min-height: 18px;
+}
+
+.filter-checkbox__label {
+    display: flex;
+    align-items: center;
+}
+
+.filter-checkbox__input {
+    min-width: 36px;
+    min-height: 20px;
+    background-color: #3ddc84;
+    box-sizing: border-box;
+}
+
+.filter-checkbox__span {
+    color: #fff;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.38;
+}
