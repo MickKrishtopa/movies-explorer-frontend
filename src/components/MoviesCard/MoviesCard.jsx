@@ -1,7 +1,8 @@
 import "./MoviesCard.css";
 import film from "../../images/film1.png";
 
-export default function MoviesCard() {
+export default function MoviesCard(props) {
+    const { buttonText } = props;
     return (
         <li className='movies-card'>
             <div className='movie-card__text-area'>
@@ -9,7 +10,7 @@ export default function MoviesCard() {
                 <p className='movie-card__duration'>27 минут</p>
             </div>
             <img className='movie-card__image' src={film} alt=''></img>
-            <botton className='movie-card__button-like '>Сохранить</botton>
+            <botton className='movie-card__button-like '>{buttonText}</botton>
         </li>
     );
 }

@@ -1,6 +1,7 @@
 .navigation {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .navigation__signup {
@@ -27,6 +28,48 @@
     border-radius: 3px;
     margin: 0;
     padding: 0;
+}
+
+.navigation__movies-area {
+    display: flex;
+}
+
+.navigation__link {
+    color: #fff;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.29;
+    margin: 0 20px 0 0;
+}
+
+.navigation__link:last-of-type {
+    margin-right: 50px;
+}
+
+.navigation__profile-area {
+    display: flex;
+    align-items: center;
+}
+.navigation__profile {
+    color: #fff;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.14;
+    margin: 0 13px 0 0;
+}
+
+.navigation__profile-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background-color: #313131;
+    background-image: url("../../images/icon__profile.svg");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 @media screen and (max-width: 555px) {

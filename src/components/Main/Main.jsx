@@ -10,7 +10,10 @@ import Footer from "../Footer/Footer";
 export default function Main() {
     return (
         <>
-            <Header />
+            <div className='main-page__header'>
+                <Header />
+            </div>
+
             <Promo />
             <AboutProjest />
             <Techs />
