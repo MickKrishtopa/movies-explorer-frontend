@@ -1,4 +1,4 @@
-.navigation {
+.navigation__link-area {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,6 +72,24 @@
     background-position: center;
 }
 
+.navigation__button-menu {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background-image: url("../../images/icon__burger.svg");
+    background-color: inherit;
+    border: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .navigation__link-area {
+        display: none;
+    }
+
+    .navigation__button-menu {
+        display: block;
+    }
+}
 @media screen and (max-width: 555px) {
     .navigation__signup {
         margin: 0 14px 0 0;
@@ -84,5 +102,10 @@
         line-height: 1.6;
         height: 26px;
         width: 54px;
+    }
+
+    .navigation__button-menu {
+        width: 40px;
+        height: 43px;
     }
 }
