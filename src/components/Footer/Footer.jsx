@@ -8,20 +8,24 @@ export default function Footer() {
             </p>
             <div className='footer__content'>
                 <p className='footer__copyright'>© 2023 </p>
-                <nav className='footer__navigation'>
-                    <a
-                        target='blank'
-                        href='https://practicum.yandex.ru/'
-                        className='footer__navigation-item'>
-                        Яндекс.Практикум
-                    </a>
-                    <a
-                        target='blank'
-                        href='https://github.com/'
-                        className='footer__navigation-item'>
-                        Github
-                    </a>
-                </nav>
+                <ul className='footer__navigation'>
+                    <li className='footer__navigation-item'>
+                        <a
+                            className='footer__navigation-link'
+                            target='blank'
+                            href='https://practicum.yandex.ru/'>
+                            Яндекс.Практикум
+                        </a>
+                    </li>
+                    <li className='footer__navigation-item'>
+                        <a
+                            className='footer__navigation-link'
+                            target='blank'
+                            href='https://github.com/'>
+                            Github
+                        </a>
+                    </li>
+                </ul>
             </div>
         </footer>
     );

@@ -21,7 +21,12 @@ export default function AboutMe() {
                             сноубордом. Отец близнецов.
                         </p>
                     </div>
-                    <p className='about-me__github-link'>Github</p>
+                    <a
+                        href='https://github.com/MickKrishtopa?tab=repositories'
+                        target='blank'
+                        className='about-me__github-link'>
+                        Github
+                    </a>
                 </div>
                 <img
                     src={myPhoto}

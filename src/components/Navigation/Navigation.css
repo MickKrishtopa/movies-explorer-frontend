@@ -12,9 +12,15 @@
     font-size: 12px;
     line-height: 1.5;
     color: #fff;
+    text-decoration: none;
+    transition: 1s;
 }
 
-.navigation__signip {
+.navigation__signup:hover {
+    opacity: 0.7;
+}
+
+.navigation__signin {
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -24,10 +30,16 @@
     height: 32px;
     width: 76px;
     background-color: #3ddc84;
-    border: none;
     border-radius: 3px;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.navigation__signin:hover {
+    opacity: 0.7;
 }
 
 .navigation__movies-area {
@@ -42,16 +54,26 @@
     font-weight: 500;
     line-height: 1.29;
     margin: 0 20px 0 0;
+    transition: 1s;
+    text-decoration: none;
 }
 
-.navigation__link:last-of-type {
-    margin-right: 50px;
+.navigation__link:hover {
+    opacity: 0.7;
 }
 
 .navigation__profile-area {
     display: flex;
     align-items: center;
+    transition: 1s;
+    text-decoration: none;
+    margin-left: 30px;
 }
+
+.navigation__profile-area:hover {
+    opacity: 0.7;
+}
+
 .navigation__profile {
     color: #fff;
     font-family: "Inter", Helvetica, sans-serif;
@@ -79,6 +101,11 @@
     background-image: url("../../images/icon__burger.svg");
     background-color: inherit;
     border: none;
+    transition: 1s;
+}
+
+.navigation__button-menu:hover {
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 1000px) {

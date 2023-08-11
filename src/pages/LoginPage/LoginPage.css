@@ -1,9 +1,9 @@
-.login__header {
+.login-page__header {
     max-width: 536px;
     margin: 52px auto 22px;
 }
 
-.login__form {
+.login-page__form {
     margin: 0 auto;
     max-width: 396px;
     min-height: 30vh;
@@ -13,7 +13,7 @@
     color: #fff;
 }
 
-.login__title {
+.login-page__title {
     margin: 0 0 40px;
     width: 100%;
     font-family: Inter;
@@ -22,7 +22,7 @@
     font-weight: 500;
     line-height: 1.21;
 }
-.login__input-area {
+.login-page__input-area {
     display: flex;
     flex-direction: column;
     margin-top: 6px;
@@ -31,11 +31,11 @@
     box-sizing: border-box;
 }
 
-.login__input-area:first-of-type {
+.login-page__input-area:first-of-type {
     margin: 0;
 }
 
-.login__input-name {
+.login-page__input-name {
     font-family: Inter;
     font-size: 10px;
     font-style: normal;
@@ -44,7 +44,7 @@
     color: #8b8b8b;
 }
 
-.login__input {
+.login-page__input {
     padding: 0;
     margin: 5px 0 10px;
     height: 17px;
@@ -58,7 +58,7 @@
     color: #fff;
 }
 
-.login__input-error {
+.login-page__input-error {
     padding-top: 6px;
     min-height: 10px;
     font-family: Inter;
@@ -70,7 +70,7 @@
     border-top: 1px solid #424242;
 }
 
-.login__button {
+.login-page__button {
     width: 396px;
     min-height: 45px;
     margin: 203px auto 16px;
@@ -86,7 +86,7 @@
     line-height: 1.21;
 }
 
-.login__caption {
+.login-page__caption {
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
@@ -97,33 +97,33 @@
 }
 
 @media screen and (max-width: 900px) {
-    .login__header {
+    .login-page__header {
         max-width: 456px;
         margin: 214px auto 22px;
     }
 
-    .login__title {
+    .login-page__title {
         margin: 0 auto 40px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .login__header {
+    .login-page__header {
         max-width: 66px;
         margin: 38px auto 32px;
     }
 
-    .login__form {
+    .login-page__form {
         max-width: 260px;
         margin-bottom: 30px;
     }
 
-    .login__title {
+    .login-page__title {
         text-align: center;
         margin-bottom: 80px;
     }
 
-    .login__button {
+    .login-page__button {
         width: 260px;
         min-height: 45px;
         margin: 289px auto 14px;
@@ -131,7 +131,7 @@
         line-height: 1.25;
     }
 
-    .login__caption {
+    .login-page__caption {
         font-size: 12px;
         line-height: 1.25;
     }

@@ -1,8 +1,8 @@
-import "./Profile.css";
+import "./ProfilePage.css";
 
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 
-export default function Profile() {
+export default function ProfilePage() {
     return (
         <>
             <Header />

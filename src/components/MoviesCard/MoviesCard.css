@@ -61,8 +61,18 @@
     line-height: 0.92;
 }
 
+.movie-card__button-like_type_liked {
+    background-color: #ee3465;
+}
+
 .movie-card__button-like_type_active {
     background-color: #ee3465;
+}
+.movie-card__button-saved {
+    background-color: #313131;
+    background-image: url("../../images/icon__remove-film.svg");
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 890px) {

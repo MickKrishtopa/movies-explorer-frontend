@@ -35,7 +35,9 @@
 
 .footer__navigation {
     margin: 0;
+    padding: 0;
     display: flex;
+    list-style: none;
 }
 
 .footer__navigation-item {
@@ -54,6 +56,11 @@
 
 .footer__navigation-item:last-child {
     margin: 0;
+}
+
+.footer__navigation-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 @media screen and (max-width: 900px) {

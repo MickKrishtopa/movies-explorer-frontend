@@ -1,25 +1,35 @@
+import { Link } from "react-router-dom";
 import "./Navigation.css";
 
 export default function Navigation() {
+    const isLogin = true;
     return (
         <div className='navigation'>
             <div className='navigation__link-area'>
-                {false && (
+                {!isLogin ? (
                     <>
-                        <p className='navigation__signup'>Регистрация</p>
-                        <button className='navigation__signip'>Войти</button>
+                        <Link to='/signup' className='navigation__signup'>
+                            Регистрация
+                        </Link>
+                        <Link to='/signin' className='navigation__signin'>
+                            Войти
+                        </Link>
                     </>
-                )}
-
-                {true && (
+                ) : (
                     <>
-                        <p className='navigation__link'>Фильмы</p>
-                        <p className='navigation__link'>Сохранённые фильмы</p>
+                        <Link to='/movies' className='navigation__link'>
+                            Фильмы
+                        </Link>
+                        <Link to='/saved-movies' className='navigation__link'>
+                            Сохранённые фильмы
+                        </Link>
 
-                        <div className='navigation__profile-area'>
+                        <Link
+                            to='/profile'
+                            className='navigation__profile-area'>
                             <p className='navigation__profile'>Аккаунт</p>
                             <div className='navigation__profile-icon'></div>
-                        </div>
+                        </Link>
                     </>
                 )}
             </div>

@@ -1,7 +1,4 @@
 import "./SideMenu.css";
-import closeIcon from "../../images/icon-close.svg";
-
-import Navigation from "../Navigation/Navigation";
 
 export default function SideMenu() {
     return (

@@ -1,7 +1,7 @@
 .movies-card-list {
     min-height: 30vh;
     margin: 0;
-    padding: 80px 70px 0;
+    padding: 82px 70px 0;
     max-width: 1140px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min-content, 360px));

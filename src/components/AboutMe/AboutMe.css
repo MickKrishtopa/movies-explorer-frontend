@@ -38,7 +38,7 @@
 
 .about-me__text-area {
     max-width: 600px;
-    padding: 0 14px;
+    /* padding: 0 14px; */
 }
 
 .about-me__photo {
@@ -83,6 +83,13 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 1.21;
+    transition: 1s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.about-me__github-link:hover {
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 900px) {

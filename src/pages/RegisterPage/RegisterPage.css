@@ -1,9 +1,9 @@
-.register__header {
+.register-page__header {
     max-width: 536px;
     margin: 52px auto 22px;
 }
 
-.register__form {
+.register-page__form {
     margin: 0 auto;
     max-width: 396px;
     min-height: 30vh;
@@ -13,7 +13,7 @@
     color: #fff;
 }
 
-.register__title {
+.register-page__title {
     margin: 0 0 40px;
     width: 100%;
     font-family: Inter;
@@ -22,7 +22,7 @@
     font-weight: 500;
     line-height: 1.21;
 }
-.register__input-area {
+.register-page__input-area {
     display: flex;
     flex-direction: column;
     margin-top: 6px;
@@ -31,11 +31,11 @@
     box-sizing: border-box;
 }
 
-.register__input-area:first-of-type {
+.register-page__input-area:first-of-type {
     margin: 0;
 }
 
-.register__input-name {
+.register-page__input-name {
     font-family: Inter;
     font-size: 10px;
     font-style: normal;
@@ -44,7 +44,7 @@
     color: #8b8b8b;
 }
 
-.register__input {
+.register-page__input {
     padding: 0;
     margin: 5px 0 10px;
     height: 17px;
@@ -58,7 +58,7 @@
     color: #fff;
 }
 
-.register__input-error {
+.register-page__input-error {
     padding-top: 6px;
     min-height: 10px;
     font-family: Inter;
@@ -70,7 +70,7 @@
     border-top: 1px solid #424242;
 }
 
-.register__button {
+.register-page__button {
     width: 396px;
     min-height: 45px;
     margin: 134px auto 16px;
@@ -86,7 +86,7 @@
     line-height: 1.21;
 }
 
-.register__caption {
+.register-page__caption {
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
@@ -97,33 +97,33 @@
 }
 
 @media screen and (max-width: 900px) {
-    .register__header {
+    .register-page__header {
         max-width: 456px;
         margin: 214px auto 22px;
     }
 
-    .register__title {
+    .register-page__title {
         margin: 0 auto 40px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .register__header {
+    .register-page__header {
         max-width: 66px;
         margin: 38px auto 32px;
     }
 
-    .register__form {
+    .register-page__form {
         max-width: 260px;
         margin-bottom: 30px;
     }
 
-    .register__title {
+    .register-page__title {
         text-align: center;
         margin-bottom: 80px;
     }
 
-    .register__button {
+    .register-page__button {
         width: 260px;
         min-height: 45px;
         margin: 222px auto 14px;
@@ -131,7 +131,7 @@
         line-height: 1.25;
     }
 
-    .register__caption {
+    .register-page__caption {
         font-size: 12px;
         line-height: 1.25;
     }
