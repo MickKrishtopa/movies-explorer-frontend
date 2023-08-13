@@ -6,20 +6,21 @@ import MoviesCard from "../../components/MoviesCard/MoviesCard";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 
-export default function SavedMoviesPage() {
+export default function SavedMoviesPage({ setIsOpenSideMenu }) {
     return (
-        <div className='movies-page'>
+        <>
             <Header>
-                <Navigation />
+                <Navigation setIsOpenSideMenu={setIsOpenSideMenu} />
             </Header>
-            <SearchForm />
-            <MoviesCardList>
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-            </MoviesCardList>
-
+            <main className='saved-movies'>
+                <SearchForm />
+                <MoviesCardList>
+                    <MoviesCard />
+                    <MoviesCard />
+                    {/* <MoviesCard /> */}
+                </MoviesCardList>
+            </main>
             <Footer />
-        </div>
+        </>
     );
 }

@@ -16,7 +16,7 @@
 .register-page__title {
     margin: 0 0 40px;
     width: 100%;
-    font-family: Inter;
+    font-family: "Inter", Helvetica, sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -36,7 +36,7 @@
 }
 
 .register-page__input-name {
-    font-family: Inter;
+    font-family: "Inter", Helvetica, sans-serif;
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
@@ -50,7 +50,7 @@
     height: 17px;
     border: none;
     background-color: inherit;
-    font-family: Inter;
+    font-family: "Inter", Helvetica, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -58,10 +58,14 @@
     color: #fff;
 }
 
+.register-page__input:focus {
+    outline: none;
+}
+
 .register-page__input-error {
     padding-top: 6px;
     min-height: 10px;
-    font-family: Inter;
+    font-family: "Inter", Helvetica, sans-serif;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -79,21 +83,44 @@
     color: #fff;
     background-color: #4285f4;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter", Helvetica, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.21;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.register-page__button:hover {
+    opacity: 0.7;
 }
 
 .register-page__caption {
-    font-family: "Inter";
+    font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.21;
     color: #fff;
     display: flex;
+    text-decoration: none;
+}
+
+.register-page__caption-span {
+    color: #4285f4;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    transition: 1s;
+    display: flex;
+    text-decoration: none;
+}
+
+.register-page__caption-span:hover {
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 900px) {

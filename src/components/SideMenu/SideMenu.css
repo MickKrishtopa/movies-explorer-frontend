@@ -1,24 +1,23 @@
-.side-menu__container {
-    display: none;
-    overflow-x: hidden;
+.side-menu {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    transition: all 1s;
+    transition: all 0.2s;
     background-color: rgba(41, 41, 41, 0.6);
+    transform: translateX(+100%);
 }
-.side-menu__container_open {
-    display: flex;
+.side-menu_open {
+    transform: translateX(0);
 }
 
-.side-menu {
+.side-menu__container {
     width: 520px;
     height: 100vh;
     position: absolute;
-    top: 0px;
-    right: -520px;
+    top: 0;
+    right: 0;
     background-color: #202020;
     color: #fff;
     display: flex;
@@ -26,10 +25,6 @@
     flex-direction: column;
     align-items: center;
     transition: all 1s;
-}
-
-.side-menu_open {
-    right: 0;
 }
 
 .side-menu__close-button {
@@ -59,26 +54,33 @@
     align-items: center;
 }
 
+.side-menu__link-area li:last-child {
+    margin-bottom: 0;
+}
+
 .side-menu__link {
-    font-family: Inter;
+    display: block;
+    font-family: "Inter", Helvetica, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 1.22;
     margin-bottom: 28px;
+    text-decoration: none;
+    color: inherit;
 }
 .side-menu__link_type_active {
     border-bottom: 2px #fff solid;
-}
-
-.side-menu__link:last-child {
-    margin-bottom: 0;
+    margin-bottom: 24px;
+    padding-bottom: 4px;
 }
 
 .side-menu__profile-area {
     display: flex;
     align-items: center;
     margin-bottom: 92px;
+    color: inherit;
+    text-decoration: none;
 }
 
 .side-menu__profile {
@@ -101,8 +103,7 @@
 }
 
 @media screen and (max-width: 650px) {
-    .side-menu {
-        right: -320px;
+    .side-menu__container {
         width: 320px;
     }
 

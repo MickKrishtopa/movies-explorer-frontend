@@ -14,18 +14,43 @@ import SideMenu from "../SideMenu/SideMenu";
 
 function App() {
     const [isLogin, setIsLogin] = useState(true);
+    const [isOpenSideMenu, setIsOpenSideMenu] = useState(false);
+
     return (
         <>
             <Routes>
-                <Route path='/' element={<MainPage />} />
+                <Route
+                    path='/'
+                    element={<MainPage setIsOpenSideMenu={setIsOpenSideMenu} />}
+                />
                 <Route path='/signin' element={<LoginPage />} />
                 <Route path='/signup' element={<RegisterPage />} />
-                <Route path='/movies' element={<MoviesPage />} />
-                <Route path='/saved-movies' element={<SavedMoviesPage />} />
-                <Route path='/profile' element={<ProfilePage />} />
+                <Route
+                    path='/movies'
+                    element={
+                        <MoviesPage setIsOpenSideMenu={setIsOpenSideMenu} />
+                    }
+                />
+                <Route
+                    path='/saved-movies'
+                    element={
+                        <SavedMoviesPage
+                            setIsOpenSideMenu={setIsOpenSideMenu}
+                        />
+                    }
+                />
+                <Route
+                    path='/profile'
+                    element={
+                        <ProfilePage setIsOpenSideMenu={setIsOpenSideMenu} />
+                    }
+                />
                 <Route path='*' element={<NotFoundPage />} />
             </Routes>
-            <SideMenu />
+            <SideMenu
+                isOpenSideMenu={isOpenSideMenu}
+                setIsOpenSideMenu={setIsOpenSideMenu}
+            />
         </>
     );
 }

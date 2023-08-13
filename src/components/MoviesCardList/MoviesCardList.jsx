@@ -7,7 +7,6 @@ export default function MoviesCardList(props) {
     return (
         <section>
             <ul className='movies-card-list'>{children}</ul>
-            <button className='movies-card-list__button-more'>Ещё</button>
         </section>
     );
 }

@@ -8,7 +8,7 @@ export default function AboutMe() {
             <div className='about-me__content'>
                 <div className='about-me__text-wrap'>
                     <div className='about-me__text-area'>
-                        <h2 className='about-me__name'>Михаил</h2>
+                        <h3 className='about-me__name'>Михаил</h3>
                         <p className='about-me__profession'>
                             Фронтенд-разработчик, 32 года
                         </p>
@@ -30,7 +30,7 @@ export default function AboutMe() {
                 </div>
                 <img
                     src={myPhoto}
-                    alt='Фотография студента'
+                    alt='Фотография студента, автора данной работы'
                     className='about-me__photo'
                 />
             </div>

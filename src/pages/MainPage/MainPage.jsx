@@ -8,22 +8,23 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Navigation from "../../components/Navigation/Navigation";
 
-export default function MainPage() {
+export default function MainPage({ setIsOpenSideMenu }) {
     return (
-        <>
+        <div className='main-page'>
             <div className='main-page__header'>
                 <Header>
                     {" "}
-                    <Navigation />
+                    <Navigation setIsOpenSideMenu={setIsOpenSideMenu} />
                 </Header>
             </div>
-
-            <Promo />
-            <AboutProjest />
-            <Techs />
-            <AboutMe />
-            <Portfolio />
+            <main>
+                <Promo />
+                <AboutProjest />
+                <Techs />
+                <AboutMe />
+                <Portfolio />
+            </main>
             <Footer />
-        </>
+        </div>
     );
 }

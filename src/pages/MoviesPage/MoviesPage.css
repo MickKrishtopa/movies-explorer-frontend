@@ -1,0 +1,38 @@
+.movies-page__button-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px auto 80px;
+    width: calc(100% - 140px);
+    min-height: 36px;
+    border-radius: 6px;
+    background: #2f2f2f;
+    color: white;
+    border: none;
+    padding: 0;
+    text-align: center;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.movies-page__button-more:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 900px) {
+    .movies-page__button-more {
+        margin: 80px auto 80px;
+        width: calc(100% - 60px);
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .movies-page__button-more {
+        margin: 80px auto 98px;
+        width: calc(100% - 20px);
+    }
+}

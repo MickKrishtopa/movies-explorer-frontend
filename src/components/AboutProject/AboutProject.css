@@ -24,7 +24,7 @@
     padding: 70px 0 110px 0;
 }
 
-.about-profect__content-box {
+.about-project__content-box {
     max-width: 550px;
 }
 
@@ -84,7 +84,7 @@
         padding: 90px 50px 80px;
     }
 
-    .about-profect__content-box {
+    .about-project__content-box {
         max-width: 319px;
     }
 
@@ -123,39 +123,40 @@
     .about-project__text-area {
         display: flex;
         flex-direction: column;
-        padding: 60px 0;
+        padding: 61px 0;
     }
 
-    .about-profect__content-box {
+    .about-project__content-box {
         max-width: 100%;
         margin-bottom: 56px;
     }
 
-    .about-profect__content-box:last-child {
+    .about-project__content-box:last-child {
         margin-bottom: 0;
     }
 
     .about-project__subtitle {
-        margin: 0 0 16px 0;
+        margin: 0 0 16px;
         font-size: 18px;
         line-height: 1.22;
+        letter-spacing: -0.72px;
     }
 
     .about-project__description {
         font-size: 11px;
-        line-height: 1.15;
+        line-height: 1.45;
     }
 
     .about-project__decoration-area {
         /* max-width: 100%; */
         display: grid;
         min-height: 72px;
-        grid-template-columns: 228px 912px;
+
         grid-template-columns: minmax(min-content, 100px) minmax(
                 min-content,
                 184px
             );
-        grid-template-rows: 36px 45px;
+        grid-template-rows: 35px 33px;
         justify-content: center;
     }
 

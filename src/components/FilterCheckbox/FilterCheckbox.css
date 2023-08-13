@@ -13,6 +13,10 @@
     border-radius: 20px;
     background-color: #343434;
     transition: 0.3s;
+    transition: 1s;
+}
+.filter-checkbox__custom-checkbox:hover {
+    opacity: 0.7;
 }
 
 .filter-checkbox__input:checked ~ .filter-checkbox__custom-checkbox {
@@ -20,6 +24,7 @@
 }
 
 .filter-checkbox__input:checked ~ .filter-checkbox__custom-checkbox::before {
+    content: "";
     top: 6px;
     left: 22px;
     background-color: #ffffff;
@@ -49,6 +54,11 @@
     font-weight: 400;
     line-height: 1.38;
     margin-left: 14px;
+    transition: 1s;
+}
+
+.filter-checkbox__span:hover {
+    opacity: 0.7;
 }
 
 @media screen and (max-width: 900px) {

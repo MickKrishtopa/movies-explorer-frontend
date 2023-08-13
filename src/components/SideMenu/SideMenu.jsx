@@ -1,22 +1,52 @@
 import "./SideMenu.css";
+import { Link } from "react-router-dom";
 
-export default function SideMenu() {
+export default function SideMenu({ isOpenSideMenu, setIsOpenSideMenu }) {
     return (
-        <div className='side-menu__container'>
-            <div className='side-menu'>
-                <button className='side-menu__close-button' />
+        <div
+            className={
+                isOpenSideMenu ? "side-menu side-menu_open" : "side-menu"
+            }>
+            <nav className='side-menu__container'>
+                <button
+                    type='button'
+                    onClick={() => setIsOpenSideMenu(false)}
+                    className='side-menu__close-button'
+                />
                 <ul className='side-menu__link-area'>
-                    <li className='side-menu__link'>Главная</li>
-                    <li className='side-menu__link side-menu__link_type_active'>
-                        Фильмы
+                    <li>
+                        <Link
+                            to='/'
+                            className='side-menu__link'
+                            onClick={() => setIsOpenSideMenu(false)}>
+                            Главная
+                        </Link>
                     </li>
-                    <li className='side-menu__link'>Сохраненные фильмы</li>
+                    <li>
+                        <Link
+                            to='/movies'
+                            className='side-menu__link side-menu__link_type_active'
+                            onClick={() => setIsOpenSideMenu(false)}>
+                            Фильмы
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to='saved-movies'
+                            className='side-menu__link'
+                            onClick={() => setIsOpenSideMenu(false)}>
+                            Сохраненные фильмы
+                        </Link>
+                    </li>
                 </ul>
-                <div className='side-menu__profile-area'>
+                <Link
+                    to='/profile'
+                    className='side-menu__profile-area'
+                    onClick={() => setIsOpenSideMenu(false)}>
                     <p className='side-menu__profile'>Аккаунт</p>
                     <div className='side-menu__profile-icon'></div>
-                </div>
-            </div>
+                </Link>
+            </nav>
         </div>
     );
 }

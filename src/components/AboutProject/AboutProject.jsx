@@ -5,19 +5,19 @@ export default function AboutProject() {
         <section id='about-project' className='about-project'>
             <h2 className='about-project__title'>О проекте</h2>
             <div className='about-project__text-area'>
-                <div className='about-profect__content-box'>
-                    <p className='about-project__subtitle'>
+                <div className='about-project__content-box'>
+                    <h3 className='about-project__subtitle'>
                         Дипломный проект включал 5 этапов
-                    </p>
+                    </h3>
                     <p className='about-project__description'>
                         Составление плана, работу над бэкендом, вёрстку,
                         добавление функциональности и финальные доработки.
                     </p>
                 </div>
-                <div className='about-profect__content-box'>
-                    <p className='about-project__subtitle'>
+                <div className='about-project__content-box'>
+                    <h3 className='about-project__subtitle'>
                         На выполнение диплома ушло 5 недель
-                    </p>
+                    </h3>
                     <p className='about-project__description'>
                         У каждого этапа был мягкий и жёсткий дедлайн, которые
                         нужно было соблюдать, чтобы успешно защититься.

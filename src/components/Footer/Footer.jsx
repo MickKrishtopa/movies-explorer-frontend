@@ -8,8 +8,9 @@ export default function Footer() {
             </p>
             <div className='footer__content'>
                 <p className='footer__copyright'>© 2023 </p>
+
                 <ul className='footer__navigation'>
-                    <li className='footer__navigation-item'>
+                    <li>
                         <a
                             className='footer__navigation-link'
                             target='blank'
@@ -17,7 +18,7 @@ export default function Footer() {
                             Яндекс.Практикум
                         </a>
                     </li>
-                    <li className='footer__navigation-item'>
+                    <li>
                         <a
                             className='footer__navigation-link'
                             target='blank'

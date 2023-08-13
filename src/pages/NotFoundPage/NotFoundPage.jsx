@@ -1,6 +1,9 @@
 import "./NotFoundPage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFoundPage() {
+    const navigate = useNavigate();
+
     return (
         <section className='not-found-page'>
             <div className='not-found-page__message-area'>
@@ -10,7 +13,12 @@ export default function NotFoundPage() {
                 </p>
             </div>
 
-            <span className='not-found-page__back-link'>Назад</span>
+            <button
+                type='button'
+                onClick={() => navigate(-1)}
+                className='not-found-page__button-back'>
+                Назад
+            </button>
         </section>
     );
 }

@@ -6,27 +6,34 @@ import MoviesCard from "../../components/MoviesCard/MoviesCard";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 
-export default function MoviesPage() {
+export default function MoviesPage({ setIsOpenSideMenu }) {
     return (
         <div className='movies-page'>
             <Header>
-                <Navigation />
+                <Navigation setIsOpenSideMenu={setIsOpenSideMenu} />
             </Header>
-            <SearchForm />
-            <MoviesCardList>
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-                <MoviesCard />
-            </MoviesCardList>
+            <main>
+                <SearchForm />
+                <MoviesCardList>
+                    <MoviesCard />
+                    <MoviesCard />
+                    <MoviesCard />
+                    <MoviesCard />
+                    <MoviesCard />
+
+                    {/* <MoviesCard />
+                    <MoviesCard />
+                    <MoviesCard /> */}
+
+                    {/* <MoviesCard />
+                    <MoviesCard />
+                    <MoviesCard />
+                    <MoviesCard /> */}
+                </MoviesCardList>
+                <button type='button' className='movies-page__button-more'>
+                    Ещё
+                </button>
+            </main>
             <Footer />
         </div>
     );

@@ -98,7 +98,7 @@
 
     .promo__button {
         margin: 0 auto;
-        display: block;
+        /* display: block; */
     }
 }
 
@@ -122,7 +122,7 @@
         margin: 0 auto 24px;
         font-size: 30px;
         line-height: 1.27;
-        letter-spacing: -0.8px;
+        letter-spacing: -1.2px;
     }
 
     .promo__subtitle {

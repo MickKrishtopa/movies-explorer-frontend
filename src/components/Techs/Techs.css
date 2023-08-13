@@ -25,7 +25,6 @@
 .techs__subtitle {
     margin: 90px 0 0;
     max-width: 700px;
-    min-height: 58px;
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -37,7 +36,6 @@
 .techs__description {
     margin: 26px 0 0;
     max-width: 460px;
-    min-height: 40px;
     font-family: "Inter", Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -48,6 +46,8 @@
 }
 
 .techs__decoration-area {
+    padding: 0;
+    list-style: none;
     margin: 100px 0 0;
     max-width: 690px;
     min-height: 60px;
@@ -93,18 +93,21 @@
         margin: 83px 0 0;
         max-width: 648px;
         min-height: 57px;
-        grid-template-columns: repeat(auto-fit, minmax(min-content, 90px));
+        grid-template-columns: repeat(auto-fit, minmax(min-content, 84px));
     }
 
     .techs__decoration-item {
         min-height: 57px;
+        font-size: 12px;
+        line-height: 1.25;
+        letter-spacing: -0.48px;
     }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 570px) {
     .techs {
         min-height: 511px;
-        padding: 70px 18px;
+        padding: 67px 18px;
     }
 
     .techs__title {
@@ -116,15 +119,18 @@
         margin: 60px 0 0;
         font-size: 30px;
         line-height: 1.2;
+        letter-spacing: -1.2px;
     }
 
     .techs__description {
         margin: 24px 0 0;
         font-size: 11px;
         line-height: 1.45;
+        letter-spacing: -0.44px;
     }
 
     .techs__decoration-area {
-        margin: 50px 0 0;
+        width: calc(100% - 40px);
+        margin: 47px 0 0;
     }
 }

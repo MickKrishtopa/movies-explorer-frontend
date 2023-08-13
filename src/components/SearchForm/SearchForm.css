@@ -34,6 +34,10 @@
     line-height: 1.11;
 }
 
+.search-form__input:focus {
+    outline: none;
+}
+
 .search-form__input::placeholder {
     font-family: "Inter", Helvetica, sans-serif;
     font-size: 18px;
@@ -47,6 +51,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    border: none;
     background: #4285f4;
     width: 100px;
     height: 52px;

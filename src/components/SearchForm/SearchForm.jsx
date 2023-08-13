@@ -4,12 +4,16 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 export default function SearchForm() {
     return (
         <section className='search-form'>
-            <div className='search-form__input-field'>
+            <form className='search-form__input-field'>
                 <input
-                    className='search-form__input'
-                    placeholder='Фильм'></input>
-                <botton className='search-form__button'>Поиск</botton>
-            </div>
+                    placeholder='Введите название'
+                    type='text'
+                    required
+                    className='search-form__input'></input>
+                <button type='submit' className='search-form__button'>
+                    Поиск
+                </button>
+            </form>
             <FilterCheckbox />
         </section>
     );
