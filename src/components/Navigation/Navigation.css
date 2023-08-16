@@ -110,6 +110,7 @@
     background-color: inherit;
     border: none;
     transition: 1s;
+    cursor: pointer;
 }
 
 .navigation__button-menu:hover {

@@ -19,6 +19,8 @@ export default function ProfilePage({ setIsOpenSideMenu }) {
                             <input
                                 placeholder='Введите имя'
                                 type='text'
+                                minLength='2'
+                                maxLength='40'
                                 className='profile__input'
                                 defaultValue='Виталий'></input>
                             <span className='profile__input-error'>

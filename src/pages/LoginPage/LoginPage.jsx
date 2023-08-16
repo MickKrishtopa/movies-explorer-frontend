@@ -35,6 +35,7 @@ export default function LoginPage() {
                                 placeholder='Введите пароль'
                                 type='password'
                                 minLength='8'
+                                maxLength='40'
                                 required
                                 className='login-page__input'
                                 defaultValue='••••••••••••••'></input>
