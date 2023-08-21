@@ -4,7 +4,12 @@ import Header from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 import { Link } from "react-router-dom";
 
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
+
 export default function ProfilePage({ setIsOpenSideMenu }) {
+    const currentUserContext = useContext(CurrentUserContext);
+
     return (
         <>
             <Header>
@@ -13,7 +18,9 @@ export default function ProfilePage({ setIsOpenSideMenu }) {
             <main>
                 <section>
                     <form className='profile'>
-                        <h1 className='profile__title'>Привет, Виталий!</h1>
+                        <h1 className='profile__title'>
+                            {`Привет, ${currentUserContext.currentUser.name}!`}
+                        </h1>
                         <div className='profile__input-area'>
                             <span className='profile__input-name'>Имя</span>
                             <input
@@ -22,7 +29,9 @@ export default function ProfilePage({ setIsOpenSideMenu }) {
                                 minLength='2'
                                 maxLength='40'
                                 className='profile__input'
-                                defaultValue='Виталий'></input>
+                                defaultValue={
+                                    currentUserContext.currentUser.name
+                                }></input>
                             <span className='profile__input-error'>
                                 Текст ошибки
                             </span>
@@ -33,7 +42,9 @@ export default function ProfilePage({ setIsOpenSideMenu }) {
                                 placeholder='Введите E-mail'
                                 type='email'
                                 className='profile__input'
-                                defaultValue='pochta@yandex.ru'></input>
+                                defaultValue={
+                                    currentUserContext.currentUser.email
+                                }></input>
                             <span className='profile__input-error'>
                                 Текст ошибки
                             </span>

@@ -8,13 +8,16 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Navigation from "../../components/Navigation/Navigation";
 
-export default function MainPage({ setIsOpenSideMenu }) {
+export default function MainPage({ setIsOpenSideMenu, isLogin }) {
     return (
         <div className='main-page'>
             <div className='main-page__header'>
                 <Header>
                     {" "}
-                    <Navigation setIsOpenSideMenu={setIsOpenSideMenu} />
+                    <Navigation
+                        setIsOpenSideMenu={setIsOpenSideMenu}
+                        isLogin={isLogin}
+                    />
                 </Header>
             </div>
             <main>

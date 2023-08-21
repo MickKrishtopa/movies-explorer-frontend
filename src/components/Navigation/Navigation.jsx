@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import "./Navigation.css";
 
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
+
 export default function Navigation({ setIsOpenSideMenu }) {
-    const isLogin = true;
+    const currentUserContext = useContext(CurrentUserContext);
+
     return (
         <nav className='navigation'>
-            {!isLogin ? (
+            {!currentUserContext.isLogin ? (
                 <ul className='navigation__link-area navigation__link-area_type_non-auth-user'>
                     <li>
                         <Link to='/signup' className='navigation__signup'>

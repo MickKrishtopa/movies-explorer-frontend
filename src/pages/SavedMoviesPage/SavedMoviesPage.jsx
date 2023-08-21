@@ -14,11 +14,7 @@ export default function SavedMoviesPage({ setIsOpenSideMenu }) {
             </Header>
             <main className='saved-movies'>
                 <SearchForm />
-                <MoviesCardList>
-                    <MoviesCard />
-                    <MoviesCard />
-                    {/* <MoviesCard /> */}
-                </MoviesCardList>
+                <MoviesCardList></MoviesCardList>
             </main>
             <Footer />
         </>
