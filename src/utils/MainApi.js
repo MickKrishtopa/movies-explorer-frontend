@@ -1,5 +1,5 @@
 const { REACT_APP_MAIN_API_URL = "http://localhost:4000" } = process.env;
-console.log("BASE URL:::", REACT_APP_MAIN_API_URL);
+// console.log("BASE URL:::", REACT_APP_MAIN_API_URL);
 
 class MainApi {
     constructor({ baseUrl, headers }) {
@@ -39,6 +39,14 @@ class MainApi {
         }).then((res) => this._checkResponse(res));
     }
 
+    signout() {
+        return fetch(this._baseUrl + "/signout", {
+            method: "POST",
+            credentials: "include",
+            headers: this._headers,
+        }).then((res) => this._checkResponse(res));
+    }
+
     getUserInfo() {
         return fetch(this._baseUrl + "/users/me", {
             method: "GET",
@@ -65,7 +73,7 @@ class MainApi {
             credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
-                moviesData,
+                ...moviesData,
             }),
         }).then((res) => this._checkResponse(res));
     }

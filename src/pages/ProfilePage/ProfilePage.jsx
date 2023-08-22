@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-export default function ProfilePage({ setIsOpenSideMenu }) {
+export default function ProfilePage({ setIsOpenSideMenu, handleLogoutSubmit }) {
     const currentUserContext = useContext(CurrentUserContext);
 
     return (
@@ -52,7 +52,10 @@ export default function ProfilePage({ setIsOpenSideMenu }) {
                         <button type='button' className='profile__edit-button'>
                             Редактировать
                         </button>
-                        <Link to='/' className='profile__logout-button'>
+                        <Link
+                            to='/'
+                            className='profile__logout-button'
+                            onClick={handleLogoutSubmit}>
                             Выйти из аккаунта
                         </Link>
                     </form>

@@ -1,5 +1,5 @@
 const { REACT_APP_MOVIES_API_URL = "http://localhost:4000" } = process.env;
-console.log("MOVIES URL:::", REACT_APP_MOVIES_API_URL);
+// console.log("MOVIES URL:::", REACT_APP_MOVIES_API_URL);
 
 class MoviesApi {
     constructor({ baseUrl, headers }) {

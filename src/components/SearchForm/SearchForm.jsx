@@ -6,8 +6,9 @@ export default function SearchForm({
     onSubmitSearchForm,
     setIsShort,
     isShort,
+    searchInputValue,
 }) {
-    const [requestMovie, setRequestMovie] = useState("");
+    const [requestMovie, setRequestMovie] = useState(searchInputValue);
 
     function onChangeInput(e) {
         setRequestMovie(e.target.value);
@@ -26,6 +27,7 @@ export default function SearchForm({
                     type='text'
                     required
                     className='search-form__input'
+                    value={requestMovie}
                     onChange={(e) => onChangeInput(e)}
                 />
                 <button type='submit' className='search-form__button'>

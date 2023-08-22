@@ -2,13 +2,15 @@ import "./MoviesCardList.css";
 
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-export default function MoviesCardList({ selectFilms }) {
+export default function MoviesCardList({ selectedFilms, handleAddSaveMovie }) {
     return (
         <section>
             <ul className='movies-card-list'>
-                {selectFilms ? (
-                    selectFilms.map((movie) => (
+                {selectedFilms.length ? (
+                    selectedFilms?.map((movie) => (
                         <MoviesCard
+                            handleAddSaveMovie={handleAddSaveMovie}
+                            movie={movie}
                             key={movie.id}
                             title={movie.nameRU}
                             duration={movie.duration}

@@ -18,25 +18,56 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
     const [isLogin, setIsLogin] = useState(false);
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState({});
     const [isOpenSideMenu, setIsOpenSideMenu] = useState(false);
-    const [downloadedMovies, setDownloadedMovies] = useState(() =>
-        localStorage.getItem("downloadedMovies")
-            ? JSON.parse(localStorage.getItem("downloadedMovies"))
-            : []
-    );
-    const [selectFilms, setSelectFilms] = useState([]);
+    const [isShort, setIsShort] = useState(false);
+    const [allDownloadedMovies, setAllDownloadedMovies] = useState([]);
+    const [selectedFilms, setSelectedFilms] = useState([]);
+    const [searchInputValue, setSearchInputValue] = useState("");
 
     const navigate = useNavigate();
 
+    // Достаем все фильмы из ЛС и записываем в стейт
+    useEffect(() => {
+        if (!localStorage.getItem("downloadedMovies")) {
+            return;
+        }
+        setAllDownloadedMovies(
+            JSON.parse(localStorage.getItem("downloadedMovies"))
+        );
+    }, [localStorage.getItem("downloadedMovies")]);
+
+    // Достаем найденные фильмы из ЛС и записываем в стейт
+    useEffect(() => {
+        if (!localStorage.getItem("selectedFilms")) {
+            return;
+        }
+        setSelectedFilms(JSON.parse(localStorage.getItem("selectedFilms")));
+    }, [localStorage.getItem("selectedFilms")]);
+
+    // Достаем значение формы поиска из ЛС и записываем в стейт
+    useEffect(() => {
+        if (!localStorage.getItem("searchInputValue")) {
+            return;
+        }
+        setSearchInputValue(localStorage.getItem("searchInputValue"));
+    }, [localStorage.getItem("searchInputValue")]);
+
+    // Достаем значение чекбокса из ЛС и записываем в стейт
+    useEffect(() => {
+        isShort
+            ? localStorage.setItem("isShort", true)
+            : localStorage.setItem("isShort", false);
+        setSearchInputValue(localStorage.getItem("searchInputValue"));
+    }, [isShort]);
+
+    // Проверяем авторизацию
     useEffect(() => {
         mainApi
             .checkToken()
             .then((res) => {
                 setIsLogin(true);
-                // fetchData();
                 setCurrentUser(res);
-                // navigate('/', { replace: true });
             })
             .catch((err) => {
                 setIsLogin(false);
@@ -45,41 +76,36 @@ function App() {
     }, []);
 
     const onSubmitSearchForm = (requestMovie) => {
-        if (downloadedMovies.length === 0) {
+        if (allDownloadedMovies.length === 0) {
             moviesApi.getMovies().then((movieList) => {
-                setDownloadedMovies(movieList);
-                console.log(movieList);
+                setAllDownloadedMovies(movieList);
                 localStorage.setItem(
                     "downloadedMovies",
                     JSON.stringify(movieList)
                 );
-                setSelectFilms(
-                    movieList.filter((movie) => movie.nameRU === requestMovie)
-                );
             });
-        } else {
-            console.log(downloadedMovies);
-            setSelectFilms(
-                downloadedMovies.filter(
-                    (movie) => movie.nameRU === requestMovie
-                )
-            );
         }
+
+        const selectedFilms = allDownloadedMovies
+            .filter((movie) =>
+                movie.nameRU.toLowerCase().includes(requestMovie.toLowerCase())
+            )
+            .filter((movie) => (isShort ? movie.duration < 41 : movie));
+
+        setSelectedFilms(selectedFilms);
+        localStorage.setItem("selectedFilms", JSON.stringify(selectedFilms));
+        localStorage.setItem("searchInputValue", JSON.stringify(requestMovie));
     };
 
     const handleRegistrationSubmit = (name, email, password) => {
         mainApi
             .signup(name, email, password)
-            .then((res) => {
-                //
-                console.log(res);
-                // setTimeout(() => {
+            .then(() => {
                 mainApi.signin(email, password).then((res) => {
                     console.log(res);
                     setIsLogin(true);
                     navigate("/movies", { replace: true });
                 });
-                // }, 1000);
             })
             .catch((err) => console.log(err));
     };
@@ -89,10 +115,29 @@ function App() {
             .signin(email, password)
             .then((res) => {
                 console.log(res);
+                setCurrentUser(res);
                 setIsLogin(true);
                 navigate("/", { replace: true });
             })
             .catch((err) => console.log(err));
+    };
+
+    const handleLogoutSubmit = () => {
+        mainApi
+            .signout()
+            .then((res) => {
+                setIsLogin(false);
+                navigate("/", { replace: true });
+                localStorage.clear();
+                setCurrentUser({});
+            })
+            .catch((err) => console.log(err));
+    };
+
+    const handleAddSaveMovie = (moviesData) => {
+        mainApi.createSaveMovie(moviesData).then((res) => {
+            console.log(res);
+        });
     };
 
     return (
@@ -121,9 +166,13 @@ function App() {
                     path='/movies'
                     element={
                         <MoviesPage
+                            handleAddSaveMovie={handleAddSaveMovie}
+                            setIsShort={setIsShort}
+                            isShort={isShort}
+                            searchInputValue={searchInputValue}
                             setIsOpenSideMenu={setIsOpenSideMenu}
                             onSubmitSearchForm={onSubmitSearchForm}
-                            selectFilms={selectFilms}
+                            selectedFilms={selectedFilms}
                         />
                     }
                 />
@@ -138,7 +187,10 @@ function App() {
                 <Route
                     path='/profile'
                     element={
-                        <ProfilePage setIsOpenSideMenu={setIsOpenSideMenu} />
+                        <ProfilePage
+                            setIsOpenSideMenu={setIsOpenSideMenu}
+                            handleLogoutSubmit={handleLogoutSubmit}
+                        />
                     }
                 />
                 <Route path='*' element={<NotFoundPage />} />
