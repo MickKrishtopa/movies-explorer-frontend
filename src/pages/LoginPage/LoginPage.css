@@ -1,0 +1,165 @@
+.login-page__header {
+    max-width: 536px;
+    margin: 52px auto 22px;
+}
+
+.login-page__form {
+    margin: 0 auto;
+    max-width: 396px;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.login-page__title {
+    margin: 0 0 40px;
+    width: 100%;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.21;
+}
+.login-page__input-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6px;
+    width: 100%;
+    min-height: 63px;
+    box-sizing: border-box;
+}
+
+.login-page__input-area:first-of-type {
+    margin: 0;
+}
+
+.login-page__input-name {
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #8b8b8b;
+}
+
+.login-page__input {
+    padding: 0;
+    margin: 5px 0 10px;
+    height: 17px;
+    border: none;
+    background-color: inherit;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.21;
+    color: #fff;
+}
+
+.login-page__input:focus {
+    outline: none;
+}
+
+.login-page__input-error {
+    padding-top: 6px;
+    min-height: 10px;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #ee3465;
+    border-top: 1px solid #424242;
+}
+
+.login-page__button {
+    width: 396px;
+    min-height: 45px;
+    margin: 203px auto 16px;
+    padding: 0;
+    border: none;
+    color: #fff;
+    background-color: #4285f4;
+    text-align: center;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.21;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.login-page__button:hover {
+    opacity: 0.7;
+}
+
+.login-page__caption {
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    color: #fff;
+    display: flex;
+    text-decoration: none;
+}
+
+.login-page__caption-span {
+    color: #4285f4;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    display: flex;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.login-page__caption-span:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 900px) {
+    .login-page__header {
+        max-width: 456px;
+        margin: 214px auto 22px;
+    }
+
+    .login-page__title {
+        margin: 0 auto 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .login-page__header {
+        max-width: 66px;
+        margin: 38px auto 32px;
+    }
+
+    .login-page__form {
+        max-width: 260px;
+        margin-bottom: 30px;
+    }
+
+    .login-page__title {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .login-page__button {
+        width: 260px;
+        min-height: 45px;
+        margin: 289px auto 14px;
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    .login-page__caption {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+}

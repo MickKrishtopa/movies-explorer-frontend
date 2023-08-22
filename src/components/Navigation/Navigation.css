@@ -1,0 +1,147 @@
+.navigation__link-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+}
+
+.navigation__link-area_type_non-auth-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation__signup {
+    margin: 0 30px 0 0;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fff;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.navigation__signup:hover {
+    opacity: 0.7;
+}
+
+.navigation__signin {
+    font-family: "Inter", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #000;
+    height: 32px;
+    width: 76px;
+    background-color: #3ddc84;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.navigation__signin:hover {
+    opacity: 0.7;
+}
+
+.navigation__movies-area {
+    display: flex;
+}
+
+.navigation__link {
+    color: #fff;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.29;
+    margin: 0 20px 0 0;
+    transition: 1s;
+    text-decoration: none;
+}
+
+.navigation__link:hover {
+    opacity: 0.7;
+}
+
+.navigation__profile-area {
+    display: flex;
+    align-items: center;
+    transition: 1s;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+.navigation__profile-area:hover {
+    opacity: 0.7;
+}
+
+.navigation__profile {
+    color: #fff;
+    font-family: "Inter", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.14;
+    margin: 0 13px 0 0;
+}
+
+.navigation__profile-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background-color: #313131;
+    background-image: url("../../images/icon__profile.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navigation__button-menu {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background-image: url("../../images/icon__burger.svg");
+    background-color: inherit;
+    border: none;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.navigation__button-menu:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 1000px) {
+    .navigation__link-area_type_auth-user {
+        display: none;
+    }
+
+    .navigation__button-menu {
+        display: block;
+    }
+}
+@media screen and (max-width: 555px) {
+    .navigation__signup {
+        margin: 0 14px 0 0;
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+    .navigation__signip {
+        font-size: 10px;
+        line-height: 1.6;
+        height: 26px;
+        width: 54px;
+    }
+
+    .navigation__button-menu {
+        width: 40px;
+        height: 43px;
+    }
+}
