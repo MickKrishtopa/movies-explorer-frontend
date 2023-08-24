@@ -27,14 +27,19 @@ export default function SearchForm({
                     type='text'
                     required
                     className='search-form__input'
-                    value={requestMovie}
+                    value={requestMovie || ""}
                     onChange={(e) => onChangeInput(e)}
                 />
                 <button type='submit' className='search-form__button'>
                     Поиск
                 </button>
             </form>
-            <FilterCheckbox isShort={isShort} setIsShort={setIsShort} />
+            <FilterCheckbox
+                isShort={isShort}
+                setIsShort={setIsShort}
+                onSubmitSearchForm={onSubmitSearchForm}
+                requestMovie={requestMovie}
+            />
         </section>
     );
 }

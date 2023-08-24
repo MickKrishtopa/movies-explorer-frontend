@@ -6,7 +6,12 @@ import MoviesCard from "../../components/MoviesCard/MoviesCard";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 
-export default function SavedMoviesPage({ setIsOpenSideMenu }) {
+export default function SavedMoviesPage({
+    setIsOpenSideMenu,
+    userMovies,
+    handleAddSaveMovie,
+    handleRemoveSaveMovie,
+}) {
     return (
         <>
             <Header>
@@ -14,7 +19,11 @@ export default function SavedMoviesPage({ setIsOpenSideMenu }) {
             </Header>
             <main className='saved-movies'>
                 <SearchForm />
-                <MoviesCardList></MoviesCardList>
+                <MoviesCardList
+                    cards={userMovies}
+                    handleAddSaveMovie={handleAddSaveMovie}
+                    handleRemoveSaveMovie={handleRemoveSaveMovie}
+                />
             </main>
             <Footer />
         </>

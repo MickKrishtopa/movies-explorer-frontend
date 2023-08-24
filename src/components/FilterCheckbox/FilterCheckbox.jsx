@@ -1,8 +1,14 @@
 import "./FilterCheckbox.css";
 
-export default function FilterCheckbox({ isShort, setIsShort }) {
+export default function FilterCheckbox({
+    isShort,
+    setIsShort,
+    onSubmitSearchForm,
+    requestMovie,
+}) {
     const onChangeCheckBox = () => {
         setIsShort(!isShort);
+        onSubmitSearchForm(requestMovie);
     };
 
     return (

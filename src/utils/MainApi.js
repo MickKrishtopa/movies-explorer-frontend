@@ -87,8 +87,8 @@ class MainApi {
     }
 
     removeSavedMovieById(movieId) {
-        return fetch(this._baseUrl + "/movies" + movieId, {
-            method: "GET",
+        return fetch(this._baseUrl + "/movies/" + movieId, {
+            method: "DELETE",
             credentials: "include",
             headers: this._headers,
         }).then((res) => this._checkResponse(res));

@@ -1,8 +1,20 @@
 import "./MoviesCard.css";
-import film from "../../images/film1.png";
 
 export default function MoviesCard(props) {
-    const { movie, title, duration, image, handleAddSaveMovie } = props;
+    const isUserListShow =
+        window.location.pathname === "/saved-movies" ? true : false;
+
+    const { movie, handleRemoveSaveMovie, handleAddSaveMovie } = props;
+    // console.log(movie);
+    const imgUrl = !isUserListShow
+        ? "https://api.nomoreparties.co/" + movie.image.url
+        : movie.image;
+
+    const btnClassName = isUserListShow
+        ? "movie-card__button-like movie-card__button-saved"
+        : movie.isSaved
+        ? "movie-card__button-like movie-card__button-like_type_active"
+        : "movie-card__button-like";
 
     const onAddSavedMovie = () => {
         const newSavedMovie = {
@@ -20,8 +32,26 @@ export default function MoviesCard(props) {
             nameRU: movie.nameRU,
             nameEN: movie.nameEN,
         };
-        console.log(newSavedMovie);
+
         handleAddSaveMovie(newSavedMovie);
+    };
+
+    const onButtonClick = () => {
+        console.log(movie);
+        console.log(movie.isSaved);
+        if (isUserListShow) {
+            console.log("Страница сохраненные, удаляем");
+            handleRemoveSaveMovie(movie._id);
+            return;
+        }
+
+        if (movie?.isSaved) {
+            console.log("Страница фильмы, удаляем");
+            handleRemoveSaveMovie(movie.idOnUserServer);
+            return;
+        }
+        console.log("Страница фильмы - добавляем");
+        onAddSavedMovie();
     };
 
     return (
@@ -32,16 +62,25 @@ export default function MoviesCard(props) {
                     onClick={() => console.log(movie)}>
                     {movie.nameRU}
                 </h2>
-                <p className='movie-card__duration'>{movie.duration}</p>
+                <p className='movie-card__duration'>
+                    {" "}
+                    {movie.duration > 60
+                        ? `${Math.floor(movie.duration / 60)}ч ${
+                              movie.duration % 60
+                          }м`
+                        : `${movie.duration}м`}
+                </p>
             </div>
             <img
                 className='movie-card__image'
-                src={`https://api.nomoreparties.co/${movie.image.url}`}
-                alt={title}></img>
+                src={imgUrl}
+                alt={movie.title}></img>
             <button
-                onClick={onAddSavedMovie}
+                onClick={onButtonClick}
                 type='button'
-                className='movie-card__button-like movie-card__button-saved'></button>
+                className={btnClassName}>
+                {movie.isSaved || isUserListShow ? "" : "Сохранить"}
+            </button>
         </li>
     );
 }
