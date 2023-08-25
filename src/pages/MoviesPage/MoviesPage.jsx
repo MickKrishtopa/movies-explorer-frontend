@@ -1,7 +1,5 @@
 import "./MoviesPage.css";
 
-import { useEffect, useState } from "react";
-
 import Header from "../../components/Header/Header";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";

@@ -94,13 +94,13 @@ class MainApi {
         }).then((res) => this._checkResponse(res));
     }
 
-    checkToken(token) {
+    checkToken() {
         return fetch(this._baseUrl + "/users/me", {
             method: "GET",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token,
+                // Authorization: token,
             },
         }).then((res) => this._checkResponse(res));
     }

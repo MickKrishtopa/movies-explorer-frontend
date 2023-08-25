@@ -11,6 +11,7 @@ import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import SideMenu from "../SideMenu/SideMenu";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import mainApi from "../../utils/MainApi";
 import moviesApi from "../../utils/MoviesApi";
@@ -26,7 +27,7 @@ function App() {
     const [isLogin, setIsLogin] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [isOpenSideMenu, setIsOpenSideMenu] = useState(false);
-    const [isShort, setIsShort] = useState(false);
+    const [isShort, setIsShort] = useState(localStorage.getItem("isShort"));
     const [allDownloadedMovies, setAllDownloadedMovies] = useState([]);
     const [selectedFilms, setSelectedFilms] = useState([]);
     const [searchInputValue, setSearchInputValue] = useState("");
@@ -48,6 +49,23 @@ function App() {
         );
     }, [localStorage.getItem("downloadedMovies")]);
 
+    useEffect(() => {
+        const selectedFilms = allDownloadedMovies
+            .filter(
+                (movie) =>
+                    movie.nameRU
+                        .toLowerCase()
+                        .includes(searchInputValue.toLowerCase()) ||
+                    movie.nameEN
+                        .toLowerCase()
+                        .includes(searchInputValue.toLowerCase())
+            )
+            .filter((movie) => (isShort ? movie.duration < 41 : movie));
+
+        setSelectedFilms(selectedFilms);
+        localStorage.setItem("selectedFilms", JSON.stringify(selectedFilms));
+    }, [allDownloadedMovies, searchInputValue, isShort]);
+
     // Достаем найденные фильмы из ЛС и записываем в стейт
     useEffect(() => {
         if (!localStorage.getItem("selectedFilms")) {
@@ -63,14 +81,6 @@ function App() {
         }
         setSearchInputValue(localStorage.getItem("searchInputValue"));
     }, [localStorage.getItem("searchInputValue")]);
-
-    // Достаем значение чекбокса из ЛС и записываем в стейт
-    useEffect(() => {
-        isShort
-            ? localStorage.setItem("isShort", true)
-            : localStorage.setItem("isShort", false);
-        setSearchInputValue(localStorage.getItem("searchInputValue"));
-    }, [isShort]);
 
     // Проверяем авторизацию
     useEffect(() => {
@@ -128,33 +138,26 @@ function App() {
         observer.current.observe(PAGE.current);
     }, [PAGE, observer]);
 
-    const onSubmitSearchForm = (requestMovie) => {
+    const onSubmitSearchForm = async (requestMovie) => {
+        //Если первый запрос и в локале нет данных, запрашиваем их
         if (allDownloadedMovies.length === 0) {
-            moviesApi.getMovies().then((movieList) => {
+            try {
+                // мы делам фетч
+                const movieList = await moviesApi.getMovies();
+                //меняем стейт
                 setAllDownloadedMovies(movieList);
+                //записываем в ЛС
                 localStorage.setItem(
                     "downloadedMovies",
                     JSON.stringify(movieList)
                 );
-            });
+            } catch (err) {
+                console.log(err);
+            }
         }
 
-        const selectedFilms = allDownloadedMovies
-            .filter(
-                (movie) =>
-                    movie.nameRU
-                        .toLowerCase()
-                        .includes(requestMovie.toLowerCase()) ||
-                    movie.nameEN
-                        .toLowerCase()
-                        .includes(requestMovie.toLowerCase())
-            )
-            .filter((movie) => (isShort ? movie.duration < 41 : movie));
-
-        setSelectedFilms(selectedFilms);
-        // setAdditionRows(0);
-        localStorage.setItem("selectedFilms", JSON.stringify(selectedFilms));
         localStorage.setItem("searchInputValue", requestMovie);
+        setSearchInputValue(requestMovie);
     };
 
     const handleRegistrationSubmit = (name, email, password) => {
@@ -174,10 +177,9 @@ function App() {
         mainApi
             .signin(email, password)
             .then((res) => {
-                console.log(res);
-                setCurrentUser(res);
+                mainApi.getUserInfo().then((res) => setCurrentUser(res));
                 setIsLogin(true);
-                navigate("/", { replace: true });
+                navigate("/movies", { replace: true });
             })
             .catch((err) => console.log(err));
     };
@@ -266,7 +268,9 @@ function App() {
                     <Route
                         path='/movies'
                         element={
-                            <MoviesPage
+                            <ProtectedRoute
+                                // isLogin={isLogin}
+                                element={MoviesPage}
                                 handleAddSaveMovie={handleAddSavedMovie}
                                 setIsShort={setIsShort}
                                 isShort={isShort}
@@ -286,7 +290,9 @@ function App() {
                     <Route
                         path='/saved-movies'
                         element={
-                            <SavedMoviesPage
+                            <ProtectedRoute
+                                element={SavedMoviesPage}
+                                // isLogin={isLogin}
                                 setIsOpenSideMenu={setIsOpenSideMenu}
                                 userMovies={userMovies}
                                 handleAddSaveMovie={handleAddSavedMovie}
@@ -297,7 +303,8 @@ function App() {
                     <Route
                         path='/profile'
                         element={
-                            <ProfilePage
+                            <ProtectedRoute
+                                element={ProfilePage}
                                 setIsOpenSideMenu={setIsOpenSideMenu}
                                 handleLogoutSubmit={handleLogoutSubmit}
                                 handleSubmitChangeProfile={
