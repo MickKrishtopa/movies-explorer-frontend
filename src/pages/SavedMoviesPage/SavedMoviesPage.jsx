@@ -11,6 +11,10 @@ export default function SavedMoviesPage({
     userMovies,
     handleAddSaveMovie,
     handleRemoveSaveMovie,
+    searchInputValue,
+    isShort,
+    setIsShort,
+    onSubmitSearchForm,
 }) {
     return (
         <>
@@ -18,7 +22,12 @@ export default function SavedMoviesPage({
                 <Navigation setIsOpenSideMenu={setIsOpenSideMenu} />
             </Header>
             <main className='saved-movies'>
-                <SearchForm />
+                <SearchForm
+                    searchInputValue={searchInputValue}
+                    isShort={isShort}
+                    setIsShort={setIsShort}
+                    onSubmitSearchForm={onSubmitSearchForm}
+                />
                 <MoviesCardList
                     cards={userMovies}
                     handleAddSaveMovie={handleAddSaveMovie}

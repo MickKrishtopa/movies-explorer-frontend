@@ -37,20 +37,16 @@ export default function MoviesCard(props) {
     };
 
     const onButtonClick = () => {
-        console.log(movie);
-        console.log(movie.isSaved);
         if (isUserListShow) {
-            console.log("Страница сохраненные, удаляем");
             handleRemoveSaveMovie(movie._id);
             return;
         }
 
         if (movie?.isSaved) {
-            console.log("Страница фильмы, удаляем");
             handleRemoveSaveMovie(movie.idOnUserServer);
             return;
         }
-        console.log("Страница фильмы - добавляем");
+
         onAddSavedMovie();
     };
 

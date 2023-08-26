@@ -49,6 +49,7 @@ function App() {
         );
     }, [localStorage.getItem("downloadedMovies")]);
 
+    //Выбираем фильмы для отображения
     useEffect(() => {
         const selectedFilms = allDownloadedMovies
             .filter(
@@ -108,18 +109,15 @@ function App() {
         if (width < SCREEN_WIDTH.TABLET) {
             setInitialCardsQty(INITIAL_CARDS_QTY.MOBILE);
             setCardsPerRow(CARDS_PER_ROW.MOBILE);
-            // setAdditionRows(0);
         } else if (
             width > SCREEN_WIDTH.TABLET &&
             width < SCREEN_WIDTH.DESKTOP
         ) {
             setInitialCardsQty(INITIAL_CARDS_QTY.TABLET);
             setCardsPerRow(CARDS_PER_ROW.TABLET);
-            // setAdditionRows(0);
         } else if (width > SCREEN_WIDTH.DESKTOP) {
             setInitialCardsQty(INITIAL_CARDS_QTY.DESKTOP);
             setCardsPerRow(CARDS_PER_ROW.DESKTOP);
-            // setAdditionRows(0);
         }
     };
 
@@ -159,6 +157,10 @@ function App() {
         localStorage.setItem("searchInputValue", requestMovie);
         setSearchInputValue(requestMovie);
     };
+
+    // const onSubmitSavedSearchForm = (request) => {
+    //     const moviesToShow = userMovies.filter;
+    // };
 
     const handleRegistrationSubmit = (name, email, password) => {
         mainApi
@@ -297,6 +299,10 @@ function App() {
                                 userMovies={userMovies}
                                 handleAddSaveMovie={handleAddSavedMovie}
                                 handleRemoveSaveMovie={handleRemoveSavedMovie}
+                                searchInputValue={searchInputValue}
+                                isShort={isShort}
+                                setIsShort={setIsShort}
+                                onSubmitSearchForm={onSubmitSearchForm}
                             />
                         }
                     />
