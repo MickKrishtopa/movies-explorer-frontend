@@ -131,7 +131,7 @@ export default function RegisterPage({ onSubmit, isLoading }) {
                         <button
                             type='submit'
                             className={
-                                isValid
+                                isValid && !isLoading
                                     ? "register-page__button"
                                     : "register-page__button register-page__button_disabled"
                             }
