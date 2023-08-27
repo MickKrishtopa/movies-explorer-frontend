@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export default function RegisterPage({ onSubmit }) {
+export default function RegisterPage({ onSubmit, isLoading }) {
     const [formValue, setFormValue] = useState({
         name: "",
         email: "",
@@ -135,7 +135,7 @@ export default function RegisterPage({ onSubmit }) {
                                     ? "register-page__button"
                                     : "register-page__button register-page__button_disabled"
                             }
-                            disabled={!isValid}>
+                            disabled={!isValid && isLoading}>
                             Зарегистрироваться
                         </button>
                         <span className='register-page__caption'>

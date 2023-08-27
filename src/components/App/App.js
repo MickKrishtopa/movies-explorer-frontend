@@ -346,12 +346,18 @@ function App() {
                         />
                         <Route
                             path='/signin'
-                            element={<LoginPage onSubmit={handleLoginSubmit} />}
+                            element={
+                                <LoginPage
+                                    isLoading={isLoading}
+                                    onSubmit={handleLoginSubmit}
+                                />
+                            }
                         />
                         <Route
                             path='/signup'
                             element={
                                 <RegisterPage
+                                    isLoading={isLoading}
                                     onSubmit={handleRegistrationSubmit}
                                 />
                             }
