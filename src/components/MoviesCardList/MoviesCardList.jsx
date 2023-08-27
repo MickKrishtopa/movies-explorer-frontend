@@ -8,7 +8,7 @@ export default function MoviesCardList({
     handleRemoveSaveMovie,
     searchInputValue,
 }) {
-    if (searchInputValue && cards.length === 0) {
+    if (!!searchInputValue && cards.length === 0) {
         return (
             <p
                 style={{

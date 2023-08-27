@@ -1,18 +1,6 @@
 import "./FilterCheckbox.css";
 
-export default function FilterCheckbox({
-    isShort,
-    setIsShort,
-    onSubmitSearchForm,
-    requestMovie,
-}) {
-    const onChangeCheckBox = (e) => {
-        setIsShort(!isShort);
-        onSubmitSearchForm(requestMovie);
-        // console.log("Состояние чекбокса записывам как", !isShort);
-        localStorage.setItem("isShort", !isShort);
-    };
-
+export default function FilterCheckbox({ isShort, onChangeCheckBox }) {
     return (
         <form>
             <label className='filter-checkbox'>

@@ -1,3 +1,6 @@
+const EMAIL_REGEX = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/;
+// /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 const INITIAL_CARDS_QTY = {
     MOBILE: 5,
     TABLET: 8,
@@ -16,4 +19,4 @@ const SCREEN_WIDTH = {
     DESKTOP: 900,
 };
 
-export { INITIAL_CARDS_QTY, CARDS_PER_ROW, SCREEN_WIDTH };
+export { INITIAL_CARDS_QTY, CARDS_PER_ROW, SCREEN_WIDTH, EMAIL_REGEX };

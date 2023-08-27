@@ -67,10 +67,12 @@ export default function MoviesCard(props) {
                         : `${movie.duration}м`}
                 </p>
             </div>
-            <img
-                className='movie-card__image'
-                src={imgUrl}
-                alt={movie.title}></img>
+            <a target='blank' href={movie.trailerLink}>
+                <img
+                    className='movie-card__image'
+                    src={imgUrl}
+                    alt={movie.title}></img>
+            </a>
             <button
                 onClick={onButtonClick}
                 type='button'

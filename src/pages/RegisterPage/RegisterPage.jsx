@@ -1,8 +1,10 @@
 import "./RegisterPage.css";
 
+import { EMAIL_REGEX } from "../../utils/constants";
+
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function RegisterPage({ onSubmit }) {
     const [formValue, setFormValue] = useState({
@@ -11,14 +13,43 @@ export default function RegisterPage({ onSubmit }) {
         password: "",
     });
 
-    const [errorMessage, setErrorMessage] = useState({});
+    const [errorMessage, setErrorMessage] = useState({
+        name: " ",
+        email: " ",
+        password: " ",
+    });
+
+    const [isValid, setIsValid] = useState(false);
+
+    const checkValid = (errorMessage) => {
+        return Object.values(errorMessage).every((err) => err === "");
+    };
+
+    const checkEmail = (email) => {
+        return !!String(email).toLowerCase().match(EMAIL_REGEX);
+    };
 
     const handleChangeInput = (e) => {
         setFormValue({ ...formValue, [e.target.name]: e.target.value });
-        setErrorMessage({
-            ...errorMessage,
-            [e.target.name]: e.target.validationMessage,
-        });
+        if (e.target.name === "email") {
+            const isValid = checkEmail(e.target.value);
+
+            if (!isValid) {
+                setErrorMessage({
+                    ...errorMessage,
+                    [e.target.name]: "Некооректный e-mail",
+                });
+            } else {
+                setErrorMessage({ ...errorMessage, [e.target.name]: "" });
+            }
+        } else {
+            setErrorMessage({
+                ...errorMessage,
+                [e.target.name]: e.target.validationMessage,
+            });
+        }
+
+        // console.log(errorMessage);
     };
 
     const handleSubmit = (e) => {
@@ -26,6 +57,10 @@ export default function RegisterPage({ onSubmit }) {
         const { name, email, password } = formValue;
         onSubmit(name, email, password);
     };
+
+    useEffect(() => {
+        setIsValid(checkValid(errorMessage));
+    }, [errorMessage]);
 
     return (
         <div className='register-page'>
@@ -52,7 +87,6 @@ export default function RegisterPage({ onSubmit }) {
                                 maxLength='40'
                                 required
                                 className='register-page__input'
-                                defaultValue='Виталий'
                                 onChange={handleChangeInput}></input>
                             <span className='register-page__input-error'>
                                 {errorMessage.name}
@@ -89,13 +123,19 @@ export default function RegisterPage({ onSubmit }) {
                                 maxLength='40'
                                 required
                                 className='register-page__input'
-                                defaultValue='111'
                                 onChange={handleChangeInput}></input>
                             <span className='register-page__input-error'>
                                 {errorMessage.password}
                             </span>
                         </div>
-                        <button type='submit' className='register-page__button'>
+                        <button
+                            type='submit'
+                            className={
+                                isValid
+                                    ? "register-page__button"
+                                    : "register-page__button register-page__button_disabled"
+                            }
+                            disabled={!isValid}>
                             Зарегистрироваться
                         </button>
                         <span className='register-page__caption'>

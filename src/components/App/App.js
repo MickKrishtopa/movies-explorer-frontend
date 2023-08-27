@@ -22,16 +22,28 @@ import {
     CARDS_PER_ROW,
     SCREEN_WIDTH,
 } from "../../utils/constants";
+import Preloader from "../Preloader/Preloader";
+import Alert from "../Alert/Alert";
 
 function App() {
+    const [alert, setAlert] = useState("");
+    const [initialization, setInitialization] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [isOpenSideMenu, setIsOpenSideMenu] = useState(false);
-    const [isShort, setIsShort] = useState(localStorage.getItem("isShort"));
+    const [isShort, setIsShort] = useState(
+        localStorage.getItem("isShort") === "false" ||
+            localStorage.getItem("isShort") === null
+            ? false
+            : true
+    );
+    const [isShortSaved, setIsShortSaved] = useState(false);
     const [allDownloadedMovies, setAllDownloadedMovies] = useState([]);
     const [selectedFilms, setSelectedFilms] = useState([]);
     const [searchInputValue, setSearchInputValue] = useState("");
     const [userMovies, setUserMovies] = useState([]);
+    const [userMoviesToShow, setUserMoviesToShow] = useState([]);
 
     const [additionRows, setAdditionRows] = useState(0);
     const [cardsPerRow, setCardsPerRow] = useState(3);
@@ -63,9 +75,13 @@ function App() {
             )
             .filter((movie) => (isShort ? movie.duration < 41 : movie));
 
-        setSelectedFilms(selectedFilms);
-        localStorage.setItem("selectedFilms", JSON.stringify(selectedFilms));
-    }, [allDownloadedMovies, searchInputValue, isShort]);
+        !!searchInputValue && setSelectedFilms(selectedFilms);
+        !!searchInputValue &&
+            localStorage.setItem(
+                "selectedFilms",
+                JSON.stringify(selectedFilms)
+            );
+    }, [searchInputValue, isShort]);
 
     // Достаем найденные фильмы из ЛС и записываем в стейт
     useEffect(() => {
@@ -85,6 +101,7 @@ function App() {
 
     // Проверяем авторизацию
     useEffect(() => {
+        setIsLoading(true);
         mainApi
             .checkToken()
             .then((res) => {
@@ -93,7 +110,11 @@ function App() {
             })
             .catch((err) => {
                 setIsLogin(false);
-                console.log("Ошибка:", err.message);
+                console.log("Ошибка:", err);
+            })
+            .finally(() => {
+                setIsLoading(false);
+                setInitialization(true);
             });
     }, []);
 
@@ -136,10 +157,15 @@ function App() {
         observer.current.observe(PAGE.current);
     }, [PAGE, observer]);
 
+    useEffect(() => {
+        setUserMoviesToShow(userMovies);
+    }, [userMovies]);
+
     const onSubmitSearchForm = async (requestMovie) => {
         //Если первый запрос и в локале нет данных, запрашиваем их
         if (allDownloadedMovies.length === 0) {
             try {
+                setIsLoading(true);
                 // мы делам фетч
                 const movieList = await moviesApi.getMovies();
                 //меняем стейт
@@ -151,6 +177,9 @@ function App() {
                 );
             } catch (err) {
                 console.log(err);
+                setAlert("Что-то пошло не так.");
+            } finally {
+                setIsLoading(false);
             }
         }
 
@@ -158,24 +187,48 @@ function App() {
         setSearchInputValue(requestMovie);
     };
 
-    // const onSubmitSavedSearchForm = (request) => {
-    //     const moviesToShow = userMovies.filter;
-    // };
+    const onSubmitSavedSearchForm = (request) => {
+        // if (request) {
+        const userMoviesToShow = userMovies
+            .filter(
+                (movie) =>
+                    movie.nameRU
+                        .toLowerCase()
+                        .includes(request.toLowerCase()) ||
+                    movie.nameEN.toLowerCase().includes(request.toLowerCase())
+            )
+            .filter((movie) => (isShortSaved ? movie.duration < 41 : movie));
+        // }
+        // const userMoviesToShow = userMovies.filter((movie) =>
+        //     isShortSaved ? movie.duration < 41 : movie
+        // );
+        setUserMoviesToShow(userMoviesToShow);
+    };
 
     const handleRegistrationSubmit = (name, email, password) => {
+        setIsLoading(true);
         mainApi
             .signup(name, email, password)
             .then(() => {
                 mainApi.signin(email, password).then((res) => {
-                    console.log(res);
+                    mainApi.getUserInfo().then((res) => setCurrentUser(res));
                     setIsLogin(true);
                     navigate("/movies", { replace: true });
                 });
             })
-            .catch((err) => console.log(err));
+            .catch(async (err) => {
+                try {
+                    const res = await err.json();
+                    setAlert(res.message);
+                } catch {}
+
+                setIsLogin(false);
+            })
+            .finally(setIsLoading(false));
     };
 
     const handleLoginSubmit = (email, password) => {
+        setIsLoading(true);
         mainApi
             .signin(email, password)
             .then((res) => {
@@ -183,10 +236,19 @@ function App() {
                 setIsLogin(true);
                 navigate("/movies", { replace: true });
             })
-            .catch((err) => console.log(err));
+            .catch(async (err) => {
+                try {
+                    const res = await err.json();
+                    setAlert(res.message);
+                } catch {}
+
+                setIsLogin(false);
+            })
+            .finally(setIsLoading(false));
     };
 
     const handleLogoutSubmit = () => {
+        setIsLoading(true);
         mainApi
             .signout()
             .then((res) => {
@@ -194,38 +256,60 @@ function App() {
                 navigate("/", { replace: true });
                 localStorage.clear();
                 setCurrentUser({});
+                setSelectedFilms([]);
+                setUserMovies([]);
+                setUserMoviesToShow([]);
+                setSearchInputValue("");
                 console.log(res);
+                setAlert(res.message);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
+            .finally(setIsLoading(false));
     };
 
     const getUserMovies = async () => {
         try {
+            setIsLoading(true);
             const userMovies = await mainApi.getSavedMovies();
             setUserMovies(userMovies);
+            setUserMoviesToShow(userMovies);
             localStorage.setItem("userMovies", JSON.stringify(userMovies));
         } catch (err) {
             console.log(err);
+            const res = await err.json();
+            setAlert(res.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handleAddSavedMovie = async (moviesData) => {
         try {
+            // setIsLoading(true);
             const newSavedMovie = await mainApi.createSaveMovie(moviesData);
             setUserMovies([newSavedMovie, ...userMovies]);
         } catch (err) {
             console.log(err);
+            const res = await err.json();
+            setAlert(res.message);
+        } finally {
+            // setIsLoading(false);
         }
     };
 
     const handleRemoveSavedMovie = async (id) => {
         try {
+            // setIsLoading(true);
             const removedMovie = await mainApi.removeSavedMovieById(id);
             setUserMovies(
                 userMovies.filter((movie) => movie._id !== removedMovie._id)
             );
         } catch (err) {
             console.log(err);
+            const res = await err.json();
+            setAlert(res.message);
+        } finally {
+            // setIsLoading(false);
         }
     };
 
@@ -233,99 +317,113 @@ function App() {
         setAdditionRows(additionRows + 1);
     };
 
-    const handleToggleCheckbox = () => {};
-
     const handleSubmitChangeProfile = async (name, email) => {
         try {
             const updatedUser = await mainApi.changeUserInfo(name, email);
             setCurrentUser(updatedUser);
         } catch (err) {
             console.log(err);
+            const res = await err.json();
+            setAlert(res.message);
         }
     };
 
     return (
         <div ref={PAGE}>
             <CurrentUserContext.Provider value={{ currentUser, isLogin }}>
-                <Routes>
-                    <Route
-                        path='/'
-                        element={
-                            <MainPage
-                                setIsOpenSideMenu={setIsOpenSideMenu}
-                                isLogin={isLogin}
-                            />
-                        }
-                    />
-                    <Route
-                        path='/signin'
-                        element={<LoginPage onSubmit={handleLoginSubmit} />}
-                    />
-                    <Route
-                        path='/signup'
-                        element={
-                            <RegisterPage onSubmit={handleRegistrationSubmit} />
-                        }
-                    />
-                    <Route
-                        path='/movies'
-                        element={
-                            <ProtectedRoute
-                                // isLogin={isLogin}
-                                element={MoviesPage}
-                                handleAddSaveMovie={handleAddSavedMovie}
-                                setIsShort={setIsShort}
-                                isShort={isShort}
-                                searchInputValue={searchInputValue}
-                                setIsOpenSideMenu={setIsOpenSideMenu}
-                                onSubmitSearchForm={onSubmitSearchForm}
-                                selectedFilms={selectedFilms}
-                                userMovies={userMovies}
-                                handleRemoveSaveMovie={handleRemoveSavedMovie}
-                                additionRows={additionRows}
-                                cardsPerRow={cardsPerRow}
-                                initialCardsQty={initialCardsQty}
-                                handleAddCardsRow={handleAddCardsRow}
-                            />
-                        }
-                    />
-                    <Route
-                        path='/saved-movies'
-                        element={
-                            <ProtectedRoute
-                                element={SavedMoviesPage}
-                                // isLogin={isLogin}
-                                setIsOpenSideMenu={setIsOpenSideMenu}
-                                userMovies={userMovies}
-                                handleAddSaveMovie={handleAddSavedMovie}
-                                handleRemoveSaveMovie={handleRemoveSavedMovie}
-                                searchInputValue={searchInputValue}
-                                isShort={isShort}
-                                setIsShort={setIsShort}
-                                onSubmitSearchForm={onSubmitSearchForm}
-                            />
-                        }
-                    />
-                    <Route
-                        path='/profile'
-                        element={
-                            <ProtectedRoute
-                                element={ProfilePage}
-                                setIsOpenSideMenu={setIsOpenSideMenu}
-                                handleLogoutSubmit={handleLogoutSubmit}
-                                handleSubmitChangeProfile={
-                                    handleSubmitChangeProfile
-                                }
-                            />
-                        }
-                    />
-                    <Route path='*' element={<NotFoundPage />} />
-                </Routes>
+                {!initialization ? (
+                    <Preloader />
+                ) : (
+                    <Routes>
+                        <Route
+                            path='/'
+                            element={
+                                <MainPage
+                                    setIsOpenSideMenu={setIsOpenSideMenu}
+                                    isLogin={isLogin}
+                                />
+                            }
+                        />
+                        <Route
+                            path='/signin'
+                            element={<LoginPage onSubmit={handleLoginSubmit} />}
+                        />
+                        <Route
+                            path='/signup'
+                            element={
+                                <RegisterPage
+                                    onSubmit={handleRegistrationSubmit}
+                                />
+                            }
+                        />
+                        <Route
+                            path='/movies'
+                            element={
+                                <ProtectedRoute
+                                    isLoading={isLoading}
+                                    element={MoviesPage}
+                                    allDownloadedMovies={allDownloadedMovies}
+                                    handleAddSaveMovie={handleAddSavedMovie}
+                                    setIsShort={setIsShort}
+                                    isShort={isShort}
+                                    searchInputValue={searchInputValue}
+                                    setIsOpenSideMenu={setIsOpenSideMenu}
+                                    onSubmitSearchForm={onSubmitSearchForm}
+                                    selectedFilms={selectedFilms}
+                                    userMovies={userMovies}
+                                    handleRemoveSaveMovie={
+                                        handleRemoveSavedMovie
+                                    }
+                                    additionRows={additionRows}
+                                    cardsPerRow={cardsPerRow}
+                                    initialCardsQty={initialCardsQty}
+                                    handleAddCardsRow={handleAddCardsRow}
+                                />
+                            }
+                        />
+                        <Route
+                            path='/saved-movies'
+                            element={
+                                <ProtectedRoute
+                                    element={SavedMoviesPage}
+                                    // isLogin={isLogin}
+
+                                    setIsOpenSideMenu={setIsOpenSideMenu}
+                                    userMovies={userMoviesToShow}
+                                    handleAddSaveMovie={handleAddSavedMovie}
+                                    handleRemoveSaveMovie={
+                                        handleRemoveSavedMovie
+                                    }
+                                    // searchInputValue={""}
+                                    isShort={isShortSaved}
+                                    setIsShort={setIsShortSaved}
+                                    onSubmitSearchForm={onSubmitSavedSearchForm}
+                                    setUserMoviesToShow={setUserMoviesToShow}
+                                />
+                            }
+                        />
+                        <Route
+                            path='/profile'
+                            element={
+                                <ProtectedRoute
+                                    element={ProfilePage}
+                                    setIsOpenSideMenu={setIsOpenSideMenu}
+                                    handleLogoutSubmit={handleLogoutSubmit}
+                                    handleSubmitChangeProfile={
+                                        handleSubmitChangeProfile
+                                    }
+                                />
+                            }
+                        />
+                        <Route path='*' element={<NotFoundPage />} />
+                    </Routes>
+                )}
                 <SideMenu
                     isOpenSideMenu={isOpenSideMenu}
                     setIsOpenSideMenu={setIsOpenSideMenu}
                 />
             </CurrentUserContext.Provider>
+            {!!alert && <Alert alert={alert} setAlert={setAlert} />}
         </div>
     );
 }

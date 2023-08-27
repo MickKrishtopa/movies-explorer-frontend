@@ -1,14 +1,15 @@
 import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import { useState } from "react";
 
 export default function SearchForm({
     onSubmitSearchForm,
     setIsShort,
     isShort,
-    searchInputValue,
+    onChangeCheckBox,
+    requestMovie,
+    setRequestMovie,
 }) {
-    const [requestMovie, setRequestMovie] = useState(searchInputValue);
+    // const [requestMovie, setRequestMovie] = useState(searchInputValue);
 
     function onChangeInput(e) {
         setRequestMovie(e.target.value);
@@ -39,6 +40,7 @@ export default function SearchForm({
                 setIsShort={setIsShort}
                 onSubmitSearchForm={onSubmitSearchForm}
                 requestMovie={requestMovie}
+                onChangeCheckBox={onChangeCheckBox}
             />
         </section>
     );

@@ -1,10 +1,12 @@
 import "./MoviesPage.css";
+import { useState } from "react";
 
 import Header from "../../components/Header/Header";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
+import Preloader from "../../components/Preloader/Preloader";
 
 export default function MoviesPage({
     setIsOpenSideMenu,
@@ -20,7 +22,17 @@ export default function MoviesPage({
     cardsPerRow,
     additionRows,
     handleAddCardsRow,
+    allDownloadedMovies,
+    isLoading,
 }) {
+    const [requestMovie, setRequestMovie] = useState(searchInputValue);
+
+    const onChangeCheckBox = (e) => {
+        setIsShort(!isShort);
+        onSubmitSearchForm(requestMovie);
+        localStorage.setItem("isShort", !isShort);
+    };
+
     const moviesToShow = selectedFilms
         .slice(0, initialCardsQty + cardsPerRow * additionRows)
         .map((movie) => {
@@ -43,17 +55,24 @@ export default function MoviesPage({
             </Header>
             <main>
                 <SearchForm
-                    searchInputValue={searchInputValue}
+                    requestMovie={requestMovie}
+                    setRequestMovie={setRequestMovie}
                     isShort={isShort}
                     setIsShort={setIsShort}
                     onSubmitSearchForm={onSubmitSearchForm}
+                    onChangeCheckBox={onChangeCheckBox}
                 />
-                <MoviesCardList
-                    searchInputValue={searchInputValue}
-                    cards={moviesToShow}
-                    handleAddSaveMovie={handleAddSaveMovie}
-                    handleRemoveSaveMovie={handleRemoveSaveMovie}
-                />
+                {isLoading ? (
+                    <Preloader />
+                ) : (
+                    <MoviesCardList
+                        isLoading={isLoading}
+                        searchInputValue={searchInputValue}
+                        cards={moviesToShow}
+                        handleAddSaveMovie={handleAddSaveMovie}
+                        handleRemoveSaveMovie={handleRemoveSaveMovie}
+                    />
+                )}
                 {selectedFilms.length > initialCardsQty ? (
                     <button
                         onClick={() => handleAddCardsRow()}
