@@ -110,7 +110,6 @@ function App() {
             })
             .catch((err) => {
                 setIsLogin(false);
-                console.log("Ошибка:", err);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -224,11 +223,12 @@ function App() {
 
                 setIsLogin(false);
             })
-            .finally(setIsLoading(false));
+            .finally(() => setIsLoading(false));
     };
 
     const handleLoginSubmit = (email, password) => {
         setIsLoading(true);
+
         mainApi
             .signin(email, password)
             .then((res) => {
@@ -244,7 +244,7 @@ function App() {
 
                 setIsLogin(false);
             })
-            .finally(setIsLoading(false));
+            .finally(() => setIsLoading(false));
     };
 
     const handleLogoutSubmit = () => {

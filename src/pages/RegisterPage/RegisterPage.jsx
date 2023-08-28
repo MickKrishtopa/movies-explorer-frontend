@@ -135,7 +135,7 @@ export default function RegisterPage({ onSubmit, isLoading }) {
                                     ? "register-page__button"
                                     : "register-page__button register-page__button_disabled"
                             }
-                            disabled={!isValid && isLoading}>
+                            disabled={!isValid || isLoading}>
                             Зарегистрироваться
                         </button>
                         <span className='register-page__caption'>

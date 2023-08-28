@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { EMAIL_REGEX } from "../../utils/constants";
 
-export default function LoginPage({ onSubmit }) {
+export default function LoginPage({ onSubmit, isLoading }) {
     const [formValue, setFormValue] = useState({
         email: "",
         password: "",
@@ -100,11 +100,11 @@ export default function LoginPage({ onSubmit }) {
                         <button
                             type='submit'
                             className={
-                                isValid
+                                isValid && !isLoading
                                     ? "register-page__button"
                                     : "register-page__button register-page__button_disabled"
                             }
-                            disabled={!isValid}>
+                            disabled={!isValid || isLoading}>
                             Войти
                         </button>
                         <span className='login-page__caption'>
