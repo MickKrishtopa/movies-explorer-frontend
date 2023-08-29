@@ -42,7 +42,6 @@ export default function ProfilePage({
     };
 
     const onButtonClick = () => {
-        console.log("Click");
         if (!isChanging) {
             setIsChanging(true);
             return;
@@ -53,7 +52,6 @@ export default function ProfilePage({
         setIsProfileChanged(false);
     };
 
-    console.log("RENDER");
     return (
         <>
             <Header>
