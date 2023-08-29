@@ -325,6 +325,8 @@ function App() {
             console.log(err);
             const res = await err.json();
             setAlert(res.message);
+        } finally {
+            setAlert("Профиль успешно изменен");
         }
     };
 

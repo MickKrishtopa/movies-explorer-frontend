@@ -5,7 +5,7 @@ import Navigation from "../../components/Navigation/Navigation";
 import { Link } from "react-router-dom";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function ProfilePage({
     setIsOpenSideMenu,
@@ -14,9 +14,21 @@ export default function ProfilePage({
 }) {
     const currentUserContext = useContext(CurrentUserContext);
 
+    const [isProfileChanged, setIsProfileChanged] = useState(false);
     const [isChanging, setIsChanging] = useState(false);
-    const [formValue, setFormValue] = useState({});
+    const [formValue, setFormValue] = useState({
+        name: currentUserContext.currentUser.name,
+        email: currentUserContext.currentUser.email,
+    });
     const [errorMessage, setErrorMessage] = useState({});
+
+    const { name, email } = currentUserContext.currentUser;
+
+    useEffect(() => {
+        setIsProfileChanged(
+            !(name === formValue.name && email === formValue.email)
+        );
+    }, [formValue]);
 
     const handleChangeInput = (e) => {
         setFormValue({
@@ -30,15 +42,18 @@ export default function ProfilePage({
     };
 
     const onButtonClick = () => {
+        console.log("Click");
         if (!isChanging) {
             setIsChanging(true);
             return;
         }
-        console.log(formValue);
+
         handleSubmitChangeProfile(formValue.name, formValue.email);
         setIsChanging(false);
+        setIsProfileChanged(false);
     };
 
+    console.log("RENDER");
     return (
         <>
             <Header>
@@ -53,16 +68,15 @@ export default function ProfilePage({
                         <div className='profile__input-area'>
                             <span className='profile__input-name'>Имя</span>
                             <input
+                                value={formValue.name}
+                                disabled={!isChanging}
                                 onChange={handleChangeInput}
                                 placeholder='Введите имя'
                                 name='name'
                                 type='text'
                                 minLength='2'
                                 maxLength='40'
-                                className='profile__input'
-                                defaultValue={
-                                    currentUserContext.currentUser.name
-                                }></input>
+                                className='profile__input'></input>
                             <span className='profile__input-error'>
                                 {errorMessage.name}
                             </span>
@@ -70,14 +84,13 @@ export default function ProfilePage({
                         <div className='profile__input-area'>
                             <span className='profile__input-name'>E-mail</span>
                             <input
+                                value={formValue.email}
+                                disabled={!isChanging}
                                 onChange={handleChangeInput}
                                 placeholder='Введите E-mail'
                                 name='email'
                                 type='email'
-                                className='profile__input'
-                                defaultValue={
-                                    currentUserContext.currentUser.email
-                                }></input>
+                                className='profile__input'></input>
                             <span className='profile__input-error'>
                                 {errorMessage.email}
                             </span>
@@ -85,6 +98,7 @@ export default function ProfilePage({
                         <button
                             type='button'
                             className='profile__edit-button'
+                            disabled={isChanging && !isProfileChanged}
                             onClick={onButtonClick}>
                             {isChanging ? "Сохранить" : "Редактировать"}
                         </button>
