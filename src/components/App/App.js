@@ -318,15 +318,18 @@ function App() {
     };
 
     const handleSubmitChangeProfile = async (name, email) => {
+        setIsLoading(true);
         try {
             const updatedUser = await mainApi.changeUserInfo(name, email);
             setCurrentUser(updatedUser);
+            setAlert("Профиль успешно изменен");
+            return true;
         } catch (err) {
-            console.log(err);
             const res = await err.json();
             setAlert(res.message);
+            return false;
         } finally {
-            setAlert("Профиль успешно изменен");
+            setIsLoading(false);
         }
     };
 
@@ -414,6 +417,7 @@ function App() {
                             path='/profile'
                             element={
                                 <ProtectedRoute
+                                    isLoading={isLoading}
                                     element={ProfilePage}
                                     setIsOpenSideMenu={setIsOpenSideMenu}
                                     handleLogoutSubmit={handleLogoutSubmit}

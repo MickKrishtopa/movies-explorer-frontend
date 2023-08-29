@@ -11,6 +11,7 @@ export default function ProfilePage({
     setIsOpenSideMenu,
     handleLogoutSubmit,
     handleSubmitChangeProfile,
+    isLoading,
 }) {
     const currentUserContext = useContext(CurrentUserContext);
 
@@ -41,15 +42,22 @@ export default function ProfilePage({
         });
     };
 
-    const onButtonClick = () => {
+    const onButtonClick = async () => {
         if (!isChanging) {
             setIsChanging(true);
             return;
         }
 
-        handleSubmitChangeProfile(formValue.name, formValue.email);
-        setIsChanging(false);
-        setIsProfileChanged(false);
+        const res = await handleSubmitChangeProfile(
+            formValue.name,
+            formValue.email
+        );
+        if (res) {
+            setIsChanging(false);
+            setIsProfileChanged(false);
+        } else {
+            setIsChanging(true);
+        }
     };
 
     return (
@@ -96,7 +104,9 @@ export default function ProfilePage({
                         <button
                             type='button'
                             className='profile__edit-button'
-                            disabled={isChanging && !isProfileChanged}
+                            disabled={
+                                (isChanging && !isProfileChanged) || isLoading
+                            }
                             onClick={onButtonClick}>
                             {isChanging ? "Сохранить" : "Редактировать"}
                         </button>
